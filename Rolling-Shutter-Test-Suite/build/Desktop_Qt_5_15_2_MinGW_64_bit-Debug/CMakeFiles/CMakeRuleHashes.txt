@@ -1,0 +1,4 @@
+# Hashes of file build rules.
+779c8546fafb6e609473ea8fb78caa84 CMakeFiles/Rolling-Shutter-Test-Suite_autogen
+ced214eeee6414c3e9bc95feb4f423bb Rolling-Shutter-Test-Suite_autogen/EWIEGA46WW/qrc_qml.cpp
+6882b9d275f220c2461a2811cf7db6dd Rolling-Shutter-Test-Suite_autogen/timestamp
