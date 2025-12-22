@@ -202,24 +202,65 @@ ApplicationWindow {
                         Rectangle { Layout.fillWidth: true; height: 1; opacity: 0.25 }
 
                         // Manual exposure time (µs)
-                        RowLayout {
-                            Layout.fillWidth: true
-                            Label { text: "Manual exposure (µs)"; }
-                            Label { text: Math.round(expSlider.value) + " µs"; Layout.alignment: Qt.AlignRight }
-                        }
-
-                        Slider {
-                            id: expSlider
-                            Layout.fillWidth: true
-                            from: 100      // 0.1 ms
-                            to: 50000      // 50 ms (adjust to your needs)
-                            value: 5000
+                        ColumnLayout {
                             enabled: ArduCam.connected && !autoExp.checked
 
-                            // Send only on release (prevents serial spam)
-                            onPressedChanged: {
-                                if (!pressed) {
-                                    ArduCam.setExposureUs(Math.round(value))
+                            RowLayout {
+                                Layout.fillWidth: true
+                                Label { text: "Manual exposure (µs)"; }
+
+                                TextField {
+                                    id: expField
+                                    Layout.preferredWidth: 110
+                                    Layout.alignment: Qt.AlignRight
+                                    inputMethodHints: Qt.ImhDigitsOnly
+                                    // keep the textbox in sync with slider when not actively editing
+                                    text: expField.activeFocus
+                                          ? expField.text
+                                          : Math.round(expSlider.value).toString()
+
+                                    onAccepted: commit()
+                                    onEditingFinished: commit()
+
+                                    function commit() {
+                                        let v = parseInt(text)
+                                        if (isNaN(v)) {
+                                            text = Math.round(expSlider.value).toString()
+                                            return
+                                        }
+
+                                        // clamp to slider range
+                                        v = Math.max(expSlider.from, Math.min(expSlider.to, v))
+
+                                        expSlider.value = v
+                                        text = v.toString()
+
+                                        // send immediately when user commits textbox
+                                        ArduCam.setExposureUs(v)
+                                    }
+                                }
+
+                                Label { text: "µs" }
+                            }
+
+                            Slider {
+                                id: expSlider
+                                Layout.fillWidth: true
+                                from: 100
+                                to: 500000
+                                value: 5000
+                                enabled: ArduCam.connected && !autoExp.checked
+
+                                // update textbox while dragging (nice UX)
+                                onMoved: expField.text = Math.round(value).toString()
+
+                                // Send only on release (prevents serial spam)
+                                onPressedChanged: {
+                                    if (!pressed) {
+                                        const v = Math.round(value)
+                                        expField.text = v.toString()
+                                        ArduCam.setExposureUs(v)
+                                    }
                                 }
                             }
                         }
