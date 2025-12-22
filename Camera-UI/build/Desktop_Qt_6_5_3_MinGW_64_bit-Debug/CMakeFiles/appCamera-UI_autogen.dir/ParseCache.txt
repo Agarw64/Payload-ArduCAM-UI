@@ -298,6 +298,6 @@ C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/ArducamController
  mdp:C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/arducamcontroller.h
  mdp:C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/appCamera-UI_autogen/moc_predefs.h
 C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/frameprovider.h
-C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/ArducamController.cpp
 C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.rcc/qmlcache/appCamera-UI_qmlcache_loader.cpp
+C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/ArducamController.cpp
 C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/main.cpp

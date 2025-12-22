@@ -26,6 +26,7 @@ const char bmp_header[BMPIMAGEOFFSET] PROGMEM =
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xF8, 0x00, 0x00, 0xE0, 0x07, 0x00, 0x00, 0x1F, 0x00,
   0x00, 0x00
 };
+
 // set pin 7 as the slave select for the digital pot:
 const int CS = 7;
 bool is_header = false;
@@ -33,6 +34,69 @@ int mode = 0;
 uint8_t start_capture = 0;
  ArduCAM myCAM( OV5642, CS );
 uint8_t read_fifo_burst(ArduCAM myCAM);
+
+
+#define CMD_SET_AUTO_EXPOSURE   0xF0
+#define CMD_SET_EXPOSURE_US     0xF1
+#define CMD_SET_LINETIME_US     0xF2
+
+static uint16_t g_lineTimeUs = 20;  // starting guess; you can calibrate via CMD_SET_LINETIME_US
+static bool g_manualExposure = false;
+
+static bool readExact(uint8_t* dst, size_t n, unsigned long timeoutMs = 200) {
+  unsigned long start = millis();
+  while (Serial.available() < (int)n) {
+    if (millis() - start > timeoutMs) return false;
+  }
+  Serial.readBytes(dst, n);
+  return true;
+}
+
+static uint16_t readU16LE(bool* ok) {
+  uint8_t b[2];
+  if (!readExact(b, 2)) { *ok = false; return 0; }
+  *ok = true;
+  return (uint16_t)b[0] | ((uint16_t)b[1] << 8);
+}
+
+static uint32_t readU32LE(bool* ok) {
+  uint8_t b[4];
+  if (!readExact(b, 4)) { *ok = false; return 0; }
+  *ok = true;
+  return (uint32_t)b[0] |
+         ((uint32_t)b[1] << 8) |
+         ((uint32_t)b[2] << 16) |
+         ((uint32_t)b[3] << 24);
+}
+
+static void setAutoExposureOV5642(bool enable) {
+  // Common OV5642 pattern: 0x3503 controls manual/auto AEC/AGC.
+  // 0x00 = auto, 0x07 = manual AEC + manual AGC (common setting).
+  // If your image looks weird, we can tweak this value.
+  myCAM.wrSensorReg16_8(0x3503, enable ? 0x00 : 0x07);
+  g_manualExposure = !enable;
+}
+
+static void setExposureUsOV5642(uint32_t exposureUs) {
+  // Force manual mode so exposure “sticks”
+  setAutoExposureOV5642(false);
+
+  // Convert µs -> “exposure units”. Many OV sensors use 20-bit exposure in units of 1/16 line.
+  // exp20 = lines * 16
+  if (g_lineTimeUs == 0) g_lineTimeUs = 1;
+  uint32_t exp20 = (exposureUs * 16UL) / (uint32_t)g_lineTimeUs;
+
+  // Clamp to 20-bit (0xFFFFF)
+  if (exp20 > 0xFFFFF) exp20 = 0xFFFFF;
+
+  // Write to exposure registers (common packing)
+  // 0x3500: [19:16], 0x3501: [15:8], 0x3502: [7:0]
+  myCAM.wrSensorReg16_8(0x3500, (exp20 >> 16) & 0x0F);
+  myCAM.wrSensorReg16_8(0x3501, (exp20 >> 8) & 0xFF);
+  myCAM.wrSensorReg16_8(0x3502, (exp20) & 0xFF);
+}
+
+
 void setup() {
 // put your setup code here, to run once:
 uint8_t vid, pid;
@@ -414,6 +478,50 @@ case 0x70:
      case 0xE3: 
      myCAM.OV5642_Test_Pattern(DLI);temp = 0xff;
      Serial.println(F("ACK CMD Set to DLI END"));break ;
+     case CMD_SET_AUTO_EXPOSURE: {
+       bool ok = false;
+       uint8_t v = 0;
+       ok = readExact(&v, 1);
+       if (!ok) { Serial.println(F("ACK CMD AE timeout END")); break; }
+ 
+       setAutoExposureOV5642(v != 0);
+ 
+       Serial.print(F("ACK CMD AE "));
+       Serial.print(v ? F("AUTO") : F("MANUAL"));
+       Serial.println(F(" END"));
+       temp = 0xFF;
+       break;
+     }
+ 
+     case CMD_SET_EXPOSURE_US: {
+       bool ok = false;
+       uint32_t us = readU32LE(&ok);
+       if (!ok) { Serial.println(F("ACK CMD EXP timeout END")); break; }
+ 
+       setExposureUsOV5642(us);
+ 
+       Serial.print(F("ACK CMD EXP_US "));
+       Serial.print(us);
+       Serial.println(F(" END"));
+       temp = 0xFF;
+       break;
+     }
+ 
+     case CMD_SET_LINETIME_US: {
+       bool ok = false;
+       uint16_t lt = readU16LE(&ok);
+       if (!ok) { Serial.println(F("ACK CMD LT timeout END")); break; }
+ 
+       if (lt < 1) lt = 1;
+       g_lineTimeUs = lt;
+ 
+       Serial.print(F("ACK CMD LINETIME_US "));
+       Serial.print(g_lineTimeUs);
+       Serial.println(F(" END"));
+       temp = 0xFF;
+       break;
+     }
+
       default:
       break;
   }
@@ -696,7 +804,50 @@ case 0x70:
      case 0xE3: 
      myCAM.OV5642_Test_Pattern(DLI);temp = 0xff;
      Serial.println(F("ACK CMD Set to DLI END"));break ;
-      
+     case CMD_SET_AUTO_EXPOSURE: {
+        bool ok = false;
+        uint8_t v = 0;
+        ok = readExact(&v, 1);
+        if (!ok) { Serial.println(F("ACK CMD AE timeout END")); break; }
+
+        setAutoExposureOV5642(v != 0);
+
+        Serial.print(F("ACK CMD AE "));
+        Serial.print(v ? F("AUTO") : F("MANUAL"));
+        Serial.println(F(" END"));
+        temp = 0xFF;
+        break;
+      }
+
+     case CMD_SET_EXPOSURE_US: {
+       bool ok = false;
+       uint32_t us = readU32LE(&ok);
+       if (!ok) { Serial.println(F("ACK CMD EXP timeout END")); break; }
+ 
+       setExposureUsOV5642(us);
+ 
+       Serial.print(F("ACK CMD EXP_US "));
+       Serial.print(us);
+       Serial.println(F(" END"));
+       temp = 0xFF;
+       break;
+     }
+
+     case CMD_SET_LINETIME_US: {
+       bool ok = false;
+       uint16_t lt = readU16LE(&ok);
+       if (!ok) { Serial.println(F("ACK CMD LT timeout END")); break; }
+ 
+       if (lt < 1) lt = 1;
+       g_lineTimeUs = lt;
+ 
+       Serial.print(F("ACK CMD LINETIME_US "));
+       Serial.print(g_lineTimeUs);
+       Serial.println(F(" END"));
+       temp = 0xFF;
+       break;
+     }
+
       }
     if (start_capture == 2)
     {

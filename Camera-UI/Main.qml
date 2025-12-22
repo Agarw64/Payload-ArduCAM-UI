@@ -127,33 +127,108 @@ ApplicationWindow {
                     }
                 }
 
+                // GroupBox {
+                //     title: "Exposure (EV)"
+                //     Layout.fillWidth: true
+
+                //     ColumnLayout {
+                //         spacing: 8
+
+                //         ComboBox {
+                //             id: exposureCombo
+                //             Layout.fillWidth: true
+                //             enabled: ArduCam.connected
+
+                //             model: [
+                //                 "-1.7 EV",
+                //                 "-1.3 EV",
+                //                 "-1.0 EV",
+                //                 "-0.7 EV",
+                //                 "-0.3 EV",
+                //                 "Default",
+                //                 "+0.7 EV",
+                //                 "+1.0 EV",
+                //                 "+1.3 EV",
+                //                 "+1.7 EV"
+                //             ]
+
+                //             currentIndex: 5  // default
+                //             onActivated: ArduCam.setExposureEVIndex(currentIndex)
+                //         }
+                //     }
+                // }
+
                 GroupBox {
-                    title: "Exposure (EV)"
+                    title: "Exposure"
                     Layout.fillWidth: true
 
                     ColumnLayout {
                         spacing: 8
 
-                        ComboBox {
-                            id: exposureCombo
+                        // Auto vs manual toggle
+                        RowLayout {
                             Layout.fillWidth: true
-                            enabled: ArduCam.connected
 
-                            model: [
-                                "-1.7 EV",
-                                "-1.3 EV",
-                                "-1.0 EV",
-                                "-0.7 EV",
-                                "-0.3 EV",
-                                "Default",
-                                "+0.7 EV",
-                                "+1.0 EV",
-                                "+1.3 EV",
-                                "+1.7 EV"
-                            ]
+                            CheckBox {
+                                id: autoExp
+                                text: "Auto Exposure (EV presets)"
+                                checked: true
+                                enabled: ArduCam.connected
+                                onToggled: {
+                                    ArduCam.setAutoExposure(checked)
+                                }
+                            }
+                        }
 
-                            currentIndex: 5  // default
-                            onActivated: ArduCam.setExposureEVIndex(currentIndex)
+                        // EV preset dropdown (enabled only in auto mode)
+                        ComboBox {
+                            id: evCombo
+                            Layout.fillWidth: true
+                            enabled: ArduCam.connected && autoExp.checked
+                            model: ["-1.7 EV","-1.3 EV","-1.0 EV","-0.7 EV","-0.3 EV","Default","+0.7 EV","+1.0 EV","+1.3 EV","+1.7 EV"]
+                            currentIndex: 5
+                            onActivated: ArduCam.setExposureEVIndex(currentIndex)   // your existing EV function
+                        }
+
+                        Rectangle { Layout.fillWidth: true; height: 1; opacity: 0.25 }
+
+                        // Manual exposure time (µs)
+                        RowLayout {
+                            Layout.fillWidth: true
+                            Label { text: "Manual exposure (µs)"; }
+                            Label { text: Math.round(expSlider.value) + " µs"; Layout.alignment: Qt.AlignRight }
+                        }
+
+                        Slider {
+                            id: expSlider
+                            Layout.fillWidth: true
+                            from: 100      // 0.1 ms
+                            to: 50000      // 50 ms (adjust to your needs)
+                            value: 5000
+                            enabled: ArduCam.connected && !autoExp.checked
+
+                            // Send only on release (prevents serial spam)
+                            onPressedChanged: {
+                                if (!pressed) {
+                                    ArduCam.setExposureUs(Math.round(value))
+                                }
+                            }
+                        }
+
+                        // Optional: line-time calibration
+                        RowLayout {
+                            Layout.fillWidth: true
+                            spacing: 8
+                            Label { text: "LineTime (µs)"; }
+                            SpinBox {
+                                id: lineTimeSpin
+                                from: 1
+                                to: 200
+                                value: 20
+                                enabled: ArduCam.connected
+                                onValueModified: ArduCam.setLineTimeUs(value)
+                            }
+                            Label { text: "(calibration)"; opacity: 0.6 }
                         }
                     }
                 }

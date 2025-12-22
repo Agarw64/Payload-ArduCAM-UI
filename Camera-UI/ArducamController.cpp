@@ -184,3 +184,44 @@ void ArduCamController::setExposureEVIndex(int idx)
     sendByte(cmds[idx]);   // your existing helper that writes a 1-byte command
 }
 
+static void appendU32LE(QByteArray& a, quint32 v) {
+    a.append(char(v & 0xFF));
+    a.append(char((v >> 8) & 0xFF));
+    a.append(char((v >> 16) & 0xFF));
+    a.append(char((v >> 24) & 0xFF));
+}
+
+static void appendU16LE(QByteArray& a, quint16 v) {
+    a.append(char(v & 0xFF));
+    a.append(char((v >> 8) & 0xFF));
+}
+
+void ArduCamController::setAutoExposure(bool enable) {
+    if (!m_serial.isOpen()) return;
+    QByteArray p;
+    p.reserve(2);
+    p.append(char(0xF0));
+    p.append(char(enable ? 1 : 0));
+    m_serial.write(p);
+    m_serial.flush();
+}
+
+void ArduCamController::setExposureUs(quint32 exposureUs) {
+    if (!m_serial.isOpen()) return;
+    QByteArray p;
+    p.reserve(1 + 4);
+    p.append(char(0xF1));
+    appendU32LE(p, exposureUs);
+    m_serial.write(p);
+    m_serial.flush();
+}
+
+void ArduCamController::setLineTimeUs(quint16 lineTimeUs) {
+    if (!m_serial.isOpen()) return;
+    QByteArray p;
+    p.reserve(1 + 2);
+    p.append(char(0xF2));
+    appendU16LE(p, lineTimeUs);
+    m_serial.write(p);
+    m_serial.flush();
+}

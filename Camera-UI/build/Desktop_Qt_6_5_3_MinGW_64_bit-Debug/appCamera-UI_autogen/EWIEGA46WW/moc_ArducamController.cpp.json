@@ -81,6 +81,39 @@
                     ],
                     "name": "setExposureEVIndex",
                     "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "enable",
+                            "type": "bool"
+                        }
+                    ],
+                    "name": "setAutoExposure",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "exposureUs",
+                            "type": "quint32"
+                        }
+                    ],
+                    "name": "setExposureUs",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "lineTimeUs",
+                            "type": "quint16"
+                        }
+                    ],
+                    "name": "setLineTimeUs",
+                    "returnType": "void"
                 }
             ],
             "object": true,

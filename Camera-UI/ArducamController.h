@@ -32,6 +32,11 @@ public:
 
     Q_INVOKABLE void setExposureEVIndex(int idx);
 
+    Q_INVOKABLE void setAutoExposure(bool enable);
+    Q_INVOKABLE void setExposureUs(quint32 exposureUs);
+    Q_INVOKABLE void setLineTimeUs(quint16 lineTimeUs); // optional
+
+
 signals:
     void connectedChanged();
     void streamingChanged();
