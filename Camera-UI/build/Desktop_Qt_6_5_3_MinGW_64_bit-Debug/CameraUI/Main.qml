@@ -104,11 +104,20 @@ ApplicationWindow {
 
                         RowLayout {
                             Layout.fillWidth: true
+                            spacing: 10
+
                             Button {
                                 text: "Capture (Single)"
                                 Layout.fillWidth: true
                                 enabled: ArduCam.connected && !ArduCam.streaming
                                 onClicked: ArduCam.captureSingle()
+                            }
+
+                            CheckBox {
+                                text: "Save single shots to ./temp"
+                                enabled: ArduCam.connected && !ArduCam.streaming
+                                checked: ArduCam.saveSingleShots
+                                onToggled: ArduCam.saveSingleShots = checked
                             }
                         }
 

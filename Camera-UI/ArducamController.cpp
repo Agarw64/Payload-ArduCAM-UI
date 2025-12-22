@@ -74,11 +74,17 @@ void ArduCamController::jpegInit() {
     sendByte(0x11);
 }
 
-void ArduCamController::captureSingle() {
+void ArduCamController::captureSingle()
+{
     m_streaming = false;
     emit streamingChanged();
-    sendByte(0x10);
+
+    // Arm saving latch ONLY for single shots
+    m_pendingSingleShotSave = m_saveSingleShots;
+
+    sendByte(0x10); // your existing single-shot command
 }
+
 
 void ArduCamController::startStreaming() {
     m_streaming = true;
@@ -224,4 +230,11 @@ void ArduCamController::setLineTimeUs(quint16 lineTimeUs) {
     appendU16LE(p, lineTimeUs);
     m_serial.write(p);
     m_serial.flush();
+}
+
+void ArduCamController::setSaveSingleShots(bool on)
+{
+    if (m_saveSingleShots == on) return;
+    m_saveSingleShots = on;
+    emit saveSingleShotsChanged();
 }

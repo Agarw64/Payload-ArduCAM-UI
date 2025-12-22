@@ -173,6 +173,21 @@
                     "stored": true,
                     "type": "QString",
                     "user": false
+                },
+                {
+                    "constant": false,
+                    "designable": true,
+                    "final": false,
+                    "index": 4,
+                    "name": "saveSingleShots",
+                    "notify": "saveSingleShotsChanged",
+                    "read": "saveSingleShots",
+                    "required": false,
+                    "scriptable": true,
+                    "stored": true,
+                    "type": "bool",
+                    "user": false,
+                    "write": "setSaveSingleShots"
                 }
             ],
             "qualifiedClassName": "ArduCamController",
@@ -217,6 +232,11 @@
                         }
                     ],
                     "name": "jpegFrameReceived",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "name": "saveSingleShotsChanged",
                     "returnType": "void"
                 }
             ],

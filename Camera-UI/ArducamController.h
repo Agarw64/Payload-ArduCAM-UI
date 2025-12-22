@@ -37,6 +37,17 @@ public:
     Q_INVOKABLE void setLineTimeUs(quint16 lineTimeUs); // optional
 
 
+    Q_PROPERTY(bool saveSingleShots READ saveSingleShots WRITE setSaveSingleShots NOTIFY saveSingleShotsChanged)
+
+    bool saveSingleShots() const { return m_saveSingleShots; }
+    void setSaveSingleShots(bool on);
+
+    bool consumePendingSingleShotSave() {
+        if (!m_pendingSingleShotSave) return false;
+        m_pendingSingleShotSave = false;
+        return true;
+    }
+
 signals:
     void connectedChanged();
     void streamingChanged();
@@ -45,6 +56,8 @@ signals:
 
     void logLine(const QString& line);
     void jpegFrameReceived(const QByteArray& jpegBytes);
+
+    void saveSingleShotsChanged();
 
 private slots:
     void onReadyRead();
@@ -66,4 +79,7 @@ private:
     bool m_streaming = false;
     int m_frameCounter = 0;
     QString m_lastLogLine;
+
+    bool m_saveSingleShots = false;
+    bool m_pendingSingleShotSave = false; // latch: next frame after captureSingle()
 };
