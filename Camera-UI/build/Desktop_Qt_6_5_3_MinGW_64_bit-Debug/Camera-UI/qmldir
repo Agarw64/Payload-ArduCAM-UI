@@ -1,0 +1,5 @@
+module Camera-UI
+typeinfo appCamera-UI.qmltypes
+prefer :/qt/qml/Camera-UI/
+Main 1.0 Main.qml
+

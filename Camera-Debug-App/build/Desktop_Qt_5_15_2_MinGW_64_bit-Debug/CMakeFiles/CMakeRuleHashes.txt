@@ -1,4 +1,0 @@
-# Hashes of file build rules.
-7cc789506e572ec259f9667a2b03102e CMakeFiles/Camera-Debug-App_autogen
-80a8abe2627136cd1235b12d4d51d62a Camera-Debug-App_autogen/EWIEGA46WW/qrc_qml.cpp
-5b66d865e4d9f1ca31f4e626672a87bb Camera-Debug-App_autogen/timestamp

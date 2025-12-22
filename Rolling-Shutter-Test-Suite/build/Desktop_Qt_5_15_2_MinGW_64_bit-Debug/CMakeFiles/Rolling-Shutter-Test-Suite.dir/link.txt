@@ -1,3 +1,0 @@
-"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\Rolling-Shutter-Test-Suite.dir/objects.a
-C:\Qt\Tools\mingw810_64\bin\ar.exe qc CMakeFiles\Rolling-Shutter-Test-Suite.dir/objects.a @CMakeFiles\Rolling-Shutter-Test-Suite.dir\objects1.rsp
-C:\Qt\Tools\mingw810_64\bin\g++.exe -DQT_QML_DEBUG -g -mwindows -Wl,--whole-archive CMakeFiles\Rolling-Shutter-Test-Suite.dir/objects.a -Wl,--no-whole-archive -o Rolling-Shutter-Test-Suite.exe -Wl,--out-implib,libRolling-Shutter-Test-Suite.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Rolling-Shutter-Test-Suite.dir\linkLibs.rsp
