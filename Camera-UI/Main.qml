@@ -228,12 +228,22 @@ ApplicationWindow {
                         }
                     }
 
-                    TextArea {
-                        id: logArea
+                    ScrollView {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
-                        readOnly: true
-                        wrapMode: TextArea.NoWrap
+                        clip: true
+
+                        TextArea {
+                            id: logArea
+                            readOnly: true
+                            wrapMode: TextArea.NoWrap
+                            selectByMouse: true
+                            font.family: "Consolas"
+                            font.pixelSize: 12
+
+                            // Important so it grows vertically and scrolling works
+                            implicitWidth: parent.width
+                        }
                     }
                 }
             }
@@ -244,6 +254,9 @@ ApplicationWindow {
         target: ArduCam
         function onLogLine(line) {
             logArea.append(line)
+
+            // Auto-scroll to bottom
+            logArea.cursorPosition = logArea.length
         }
     }
 }
