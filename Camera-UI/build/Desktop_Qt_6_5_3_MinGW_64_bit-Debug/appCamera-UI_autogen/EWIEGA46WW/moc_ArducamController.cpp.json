@@ -1,0 +1,207 @@
+{
+    "classes": [
+        {
+            "className": "ArduCamController",
+            "methods": [
+                {
+                    "access": "public",
+                    "name": "availablePorts",
+                    "returnType": "QStringList"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "portName",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "baud",
+                            "type": "int"
+                        }
+                    ],
+                    "name": "connectPort",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "portName",
+                            "type": "QString"
+                        }
+                    ],
+                    "isCloned": true,
+                    "name": "connectPort",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "name": "disconnectPort",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "code0to6",
+                            "type": "int"
+                        }
+                    ],
+                    "name": "setResolution",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "name": "jpegInit",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "name": "captureSingle",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "name": "startStreaming",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "name": "stopStreaming",
+                    "returnType": "void"
+                }
+            ],
+            "object": true,
+            "properties": [
+                {
+                    "constant": false,
+                    "designable": true,
+                    "final": false,
+                    "index": 0,
+                    "name": "connected",
+                    "notify": "connectedChanged",
+                    "read": "connected",
+                    "required": false,
+                    "scriptable": true,
+                    "stored": true,
+                    "type": "bool",
+                    "user": false
+                },
+                {
+                    "constant": false,
+                    "designable": true,
+                    "final": false,
+                    "index": 1,
+                    "name": "streaming",
+                    "notify": "streamingChanged",
+                    "read": "streaming",
+                    "required": false,
+                    "scriptable": true,
+                    "stored": true,
+                    "type": "bool",
+                    "user": false
+                },
+                {
+                    "constant": false,
+                    "designable": true,
+                    "final": false,
+                    "index": 2,
+                    "name": "frameCounter",
+                    "notify": "frameCounterChanged",
+                    "read": "frameCounter",
+                    "required": false,
+                    "scriptable": true,
+                    "stored": true,
+                    "type": "int",
+                    "user": false
+                },
+                {
+                    "constant": false,
+                    "designable": true,
+                    "final": false,
+                    "index": 3,
+                    "name": "lastLogLine",
+                    "notify": "lastLogLineChanged",
+                    "read": "lastLogLine",
+                    "required": false,
+                    "scriptable": true,
+                    "stored": true,
+                    "type": "QString",
+                    "user": false
+                }
+            ],
+            "qualifiedClassName": "ArduCamController",
+            "signals": [
+                {
+                    "access": "public",
+                    "name": "connectedChanged",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "name": "streamingChanged",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "name": "frameCounterChanged",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "name": "lastLogLineChanged",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "line",
+                            "type": "QString"
+                        }
+                    ],
+                    "name": "logLine",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "jpegBytes",
+                            "type": "QByteArray"
+                        }
+                    ],
+                    "name": "jpegFrameReceived",
+                    "returnType": "void"
+                }
+            ],
+            "slots": [
+                {
+                    "access": "private",
+                    "name": "onReadyRead",
+                    "returnType": "void"
+                },
+                {
+                    "access": "private",
+                    "arguments": [
+                        {
+                            "name": "e",
+                            "type": "QSerialPort::SerialPortError"
+                        }
+                    ],
+                    "name": "onError",
+                    "returnType": "void"
+                }
+            ],
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QObject"
+                }
+            ]
+        }
+    ],
+    "inputFile": "ArducamController.h",
+    "outputRevision": 68
+}

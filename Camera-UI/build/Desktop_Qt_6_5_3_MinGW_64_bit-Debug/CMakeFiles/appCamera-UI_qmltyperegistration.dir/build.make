@@ -66,7 +66,7 @@ include CMakeFiles/appCamera-UI_qmltyperegistration.dir/compiler_depend.make
 include CMakeFiles/appCamera-UI_qmltyperegistration.dir/progress.make
 
 CMakeFiles/appCamera-UI_qmltyperegistration: appcamera-ui_qmltyperegistrations.cpp
-CMakeFiles/appCamera-UI_qmltyperegistration: Camera-UI/appCamera-UI.qmltypes
+CMakeFiles/appCamera-UI_qmltyperegistration: CameraUI/appCamera-UI.qmltypes
 
 appcamera-ui_qmltyperegistrations.cpp: qmltypes/appCamera-UI_foreign_types.txt
 appcamera-ui_qmltyperegistrations.cpp: meta_types/qt6appcamera-ui_debug_metatypes.json
@@ -78,19 +78,21 @@ appcamera-ui_qmltyperegistrations.cpp: C:/Qt/6.5.3/mingw_64/metatypes/qt6quick_r
 appcamera-ui_qmltyperegistrations.cpp: C:/Qt/6.5.3/mingw_64/metatypes/qt6gui_relwithdebinfo_metatypes.json
 appcamera-ui_qmltyperegistrations.cpp: C:/Qt/6.5.3/mingw_64/metatypes/qt6qmlmodels_relwithdebinfo_metatypes.json
 appcamera-ui_qmltyperegistrations.cpp: C:/Qt/6.5.3/mingw_64/metatypes/qt6opengl_relwithdebinfo_metatypes.json
+appcamera-ui_qmltyperegistrations.cpp: C:/Qt/6.5.3/mingw_64/metatypes/qt6serialport_relwithdebinfo_metatypes.json
+appcamera-ui_qmltyperegistrations.cpp: C:/Qt/6.5.3/mingw_64/metatypes/qt6quickcontrols2_relwithdebinfo_metatypes.json
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=C:\Users\aysma\Documents\Projects\Payload-ArduCAM-UI\Camera-UI\build\Desktop_Qt_6_5_3_MinGW_64_bit-Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic QML type registration for target appCamera-UI"
-	call .qt\bin\qt_setup_tool_path.bat C:/Qt/6.5.3/mingw_64/./bin/qmltyperegistrar.exe --generate-qmltypes=C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/Camera-UI/appCamera-UI.qmltypes --import-name=Camera-UI --major-version=1 --minor-version=0 @C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/qmltypes/appCamera-UI_foreign_types.txt -o C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/appcamera-ui_qmltyperegistrations.cpp C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/meta_types/qt6appcamera-ui_debug_metatypes.json
+	call .qt\bin\qt_setup_tool_path.bat C:/Qt/6.5.3/mingw_64/./bin/qmltyperegistrar.exe --generate-qmltypes=C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/CameraUI/appCamera-UI.qmltypes --import-name=CameraUI --major-version=1 --minor-version=0 @C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/qmltypes/appCamera-UI_foreign_types.txt -o C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/appcamera-ui_qmltyperegistrations.cpp C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/meta_types/qt6appcamera-ui_debug_metatypes.json
 	"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.generated
 	"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.generated/appCamera-UI.qmltypes
 
-Camera-UI/appCamera-UI.qmltypes: appcamera-ui_qmltyperegistrations.cpp
-	@$(CMAKE_COMMAND) -E touch_nocreate Camera-UI\appCamera-UI.qmltypes
+CameraUI/appCamera-UI.qmltypes: appcamera-ui_qmltyperegistrations.cpp
+	@$(CMAKE_COMMAND) -E touch_nocreate CameraUI\appCamera-UI.qmltypes
 
 CMakeFiles/appCamera-UI_qmltyperegistration.dir/codegen:
 .PHONY : CMakeFiles/appCamera-UI_qmltyperegistration.dir/codegen
 
 appCamera-UI_qmltyperegistration: CMakeFiles/appCamera-UI_qmltyperegistration
-appCamera-UI_qmltyperegistration: Camera-UI/appCamera-UI.qmltypes
+appCamera-UI_qmltyperegistration: CameraUI/appCamera-UI.qmltypes
 appCamera-UI_qmltyperegistration: appcamera-ui_qmltyperegistrations.cpp
 appCamera-UI_qmltyperegistration: CMakeFiles/appCamera-UI_qmltyperegistration.dir/build.make
 .PHONY : appCamera-UI_qmltyperegistration

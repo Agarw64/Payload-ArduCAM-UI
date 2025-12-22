@@ -68,7 +68,7 @@ include CMakeFiles/appCamera-UI_qmlimportscan.dir/progress.make
 CMakeFiles/appCamera-UI_qmlimportscan: .qt_plugins/Qt6_QmlPlugins_Imports_appCamera-UI.cmake
 
 .qt_plugins/Qt6_QmlPlugins_Imports_appCamera-UI.cmake: C:/Qt/6.5.3/mingw_64/bin/qmlimportscanner.exe
-.qt_plugins/Qt6_QmlPlugins_Imports_appCamera-UI.cmake: .rcc/qmake_Camera-UI.qrc
+.qt_plugins/Qt6_QmlPlugins_Imports_appCamera-UI.cmake: .rcc/qmake_CameraUI.qrc
 .qt_plugins/Qt6_QmlPlugins_Imports_appCamera-UI.cmake: .rcc/appCamera-UI_raw_qml_0.qrc
 .qt_plugins/Qt6_QmlPlugins_Imports_appCamera-UI.cmake: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/Main.qml
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=C:\Users\aysma\Documents\Projects\Payload-ArduCAM-UI\Camera-UI\build\Desktop_Qt_6_5_3_MinGW_64_bit-Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Running qmlimportscanner for appCamera-UI"

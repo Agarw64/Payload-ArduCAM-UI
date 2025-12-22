@@ -4,11 +4,11 @@ C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI
 -output-file
 C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.qt_plugins/Qt6_QmlPlugins_Imports_appCamera-UI.cmake
 -importPath
-C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/Camera-UI
+C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/CameraUI
 -importPath
 C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug
 -importPath
 C:/Qt/6.5.3/mingw_64/./qml
 -qrcFiles
-C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.rcc/qmake_Camera-UI.qrc
+C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.rcc/qmake_CameraUI.qrc
 C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.rcc/appCamera-UI_raw_qml_0.qrc

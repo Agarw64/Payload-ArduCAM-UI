@@ -67,7 +67,7 @@ include CMakeFiles/appCamera-UI_qmllint_module.dir/progress.make
 
 CMakeFiles/appCamera-UI_qmllint_module: C:/Qt/6.5.3/mingw_64/bin/qmllint.exe
 CMakeFiles/appCamera-UI_qmllint_module: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/Main.qml
-	cd /d C:\Users\aysma\Documents\Projects\Payload-ArduCAM-UI\Camera-UI && call C:\Users\aysma\Documents\Projects\Payload-ArduCAM-UI\Camera-UI\build\Desktop_Qt_6_5_3_MinGW_64_bit-Debug\.qt\bin\qt_setup_tool_path.bat C:/Qt/6.5.3/mingw_64/bin/qmllint.exe -I C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug -I C:/Qt/6.5.3/mingw_64/./qml --resource C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.rcc/qmake_Camera-UI.qrc --resource C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.rcc/appCamera-UI_raw_qml_0.qrc --module Camera-UI
+	cd /d C:\Users\aysma\Documents\Projects\Payload-ArduCAM-UI\Camera-UI && call C:\Users\aysma\Documents\Projects\Payload-ArduCAM-UI\Camera-UI\build\Desktop_Qt_6_5_3_MinGW_64_bit-Debug\.qt\bin\qt_setup_tool_path.bat C:/Qt/6.5.3/mingw_64/bin/qmllint.exe -I C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug -I C:/Qt/6.5.3/mingw_64/./qml --resource C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.rcc/qmake_CameraUI.qrc --resource C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.rcc/appCamera-UI_raw_qml_0.qrc --module CameraUI
 
 CMakeFiles/appCamera-UI_qmllint_module.dir/codegen:
 .PHONY : CMakeFiles/appCamera-UI_qmllint_module.dir/codegen

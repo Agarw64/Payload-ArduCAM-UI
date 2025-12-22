@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/appCamera-UI_qmltyperegistration"
-  "Camera-UI/appCamera-UI.qmltypes"
+  "CameraUI/appCamera-UI.qmltypes"
   "appcamera-ui_qmltyperegistrations.cpp"
 )
 

@@ -65,14 +65,14 @@ include CMakeFiles/appCamera-UI_tooling.dir/compiler_depend.make
 # Include the progress variables for this target.
 include CMakeFiles/appCamera-UI_tooling.dir/progress.make
 
-Camera-UI/Main.qml: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/Main.qml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=C:\Users\aysma\Documents\Projects\Payload-ArduCAM-UI\Camera-UI\build\Desktop_Qt_6_5_3_MinGW_64_bit-Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Camera-UI/Main.qml"
-	cd /d C:\Users\aysma\Documents\Projects\Payload-ArduCAM-UI\Camera-UI && "C:\Program Files\CMake\bin\cmake.exe" -E copy C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/Main.qml C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/Camera-UI/Main.qml
+CameraUI/Main.qml: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/Main.qml
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=C:\Users\aysma\Documents\Projects\Payload-ArduCAM-UI\Camera-UI\build\Desktop_Qt_6_5_3_MinGW_64_bit-Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating CameraUI/Main.qml"
+	cd /d C:\Users\aysma\Documents\Projects\Payload-ArduCAM-UI\Camera-UI && "C:\Program Files\CMake\bin\cmake.exe" -E copy C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/Main.qml C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/CameraUI/Main.qml
 
 CMakeFiles/appCamera-UI_tooling.dir/codegen:
 .PHONY : CMakeFiles/appCamera-UI_tooling.dir/codegen
 
-appCamera-UI_tooling: Camera-UI/Main.qml
+appCamera-UI_tooling: CameraUI/Main.qml
 appCamera-UI_tooling: CMakeFiles/appCamera-UI_tooling.dir/build.make
 .PHONY : appCamera-UI_tooling
 

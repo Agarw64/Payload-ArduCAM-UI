@@ -364,4 +364,37 @@ CMakeFiles/appCamera-UI.dir/main.cpp.obj: \
  C:/Qt/6.5.3/mingw_64/include/QtQml/qqmlregistration.h \
  C:/Qt/6.5.3/mingw_64/include/QtQmlIntegration/qqmlintegration.h \
  C:/Qt/6.5.3/mingw_64/include/QtQml/qqmlerror.h \
- C:/Qt/6.5.3/mingw_64/include/QtQml/qqmlabstracturlinterceptor.h
+ C:/Qt/6.5.3/mingw_64/include/QtQml/qqmlabstracturlinterceptor.h \
+ C:\Users\aysma\Documents\Projects\Payload-ArduCAM-UI\Camera-UI\arducamcontroller.h \
+ C:/Qt/6.5.3/mingw_64/include/QtCore/QObject \
+ C:/Qt/6.5.3/mingw_64/include/QtCore/qobject.h \
+ C:/Qt/6.5.3/mingw_64/include/QtSerialPort/QSerialPort \
+ C:/Qt/6.5.3/mingw_64/include/QtSerialPort/qserialport.h \
+ C:/Qt/6.5.3/mingw_64/include/QtCore/qiodevice.h \
+ C:/Qt/6.5.3/mingw_64/include/QtSerialPort/qserialportglobal.h \
+ C:/Qt/6.5.3/mingw_64/include/QtSerialPort/qtserialportexports.h \
+ C:/Qt/6.5.3/mingw_64/include/QtCore/QByteArray \
+ C:/Qt/6.5.3/mingw_64/include/QtCore/qbytearray.h \
+ C:\Users\aysma\Documents\Projects\Payload-ArduCAM-UI\Camera-UI\FrameProvider.h \
+ C:/Qt/6.5.3/mingw_64/include/QtQuick/QQuickImageProvider \
+ C:/Qt/6.5.3/mingw_64/include/QtQuick/qquickimageprovider.h \
+ C:/Qt/6.5.3/mingw_64/include/QtQuick/qtquickglobal.h \
+ C:/Qt/6.5.3/mingw_64/include/QtQuick/qtquick-config.h \
+ C:/Qt/6.5.3/mingw_64/include/QtQuick/qtquickexports.h \
+ C:/Qt/6.5.3/mingw_64/include/QtGui/qimage.h \
+ C:/Qt/6.5.3/mingw_64/include/QtGui/qcolor.h \
+ C:/Qt/6.5.3/mingw_64/include/QtGui/qrgb.h \
+ C:/Qt/6.5.3/mingw_64/include/QtGui/qrgba64.h \
+ C:/Qt/6.5.3/mingw_64/include/QtGui/qpaintdevice.h \
+ C:/Qt/6.5.3/mingw_64/include/QtCore/qrect.h \
+ C:/Qt/6.5.3/mingw_64/include/QtGui/qpixelformat.h \
+ C:/Qt/6.5.3/mingw_64/include/QtGui/qtransform.h \
+ C:/Qt/6.5.3/mingw_64/include/QtGui/qpolygon.h \
+ C:/Qt/6.5.3/mingw_64/include/QtGui/qregion.h \
+ C:/Qt/6.5.3/mingw_64/include/QtCore/qline.h \
+ C:/Qt/6.5.3/mingw_64/include/QtGui/qpixmap.h \
+ C:/Qt/6.5.3/mingw_64/include/QtGui/QImage \
+ C:/Qt/6.5.3/mingw_64/include/QtGui/qimage.h \
+ C:/Qt/6.5.3/mingw_64/include/QtCore/QMutex \
+ C:/Qt/6.5.3/mingw_64/include/QtCore/qmutex.h \
+ C:/Qt/6.5.3/mingw_64/include/QtCore/qtsan_impl.h

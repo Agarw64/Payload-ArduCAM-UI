@@ -14,9 +14,9 @@
 #else
 #define Q_QMLTYPE_EXPORT
 #endif
-Q_QMLTYPE_EXPORT void qml_register_types_Camera_UI()
+Q_QMLTYPE_EXPORT void qml_register_types_CameraUI()
 {
-    qmlRegisterModule("Camera-UI", 1, 0);
+    qmlRegisterModule("CameraUI", 1, 0);
 }
 
-static const QQmlModuleRegistration registration("Camera-UI", qml_register_types_Camera_UI);
+static const QQmlModuleRegistration registration("CameraUI", qml_register_types_CameraUI);

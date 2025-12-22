@@ -1,0 +1,178 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-094d1fdea8f9416161b3.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Camera-UI",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmllint::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmllint-Debug-1553e2439715d1130dac.json",
+					"name" : "all_qmllint",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmllint_json::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmllint_json-Debug-84b30f24be03c2d1cf56.json",
+					"name" : "all_qmllint_json",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmllint_module::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmllint_module-Debug-fa07fd2b7b4d817570ce.json",
+					"name" : "all_qmllint_module",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmltyperegistrations::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmltyperegistrations-Debug-224f82d33431ebc10282.json",
+					"name" : "all_qmltyperegistrations",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appCamera-UI::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appCamera-UI-Debug-7a44158298b24db26f0e.json",
+					"name" : "appCamera-UI",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appCamera-UI_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appCamera-UI_autogen-Debug-7c218b0a72c61c30ad41.json",
+					"name" : "appCamera-UI_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appCamera-UI_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appCamera-UI_autogen_timestamp_deps-Debug-c188486cd44de639fb62.json",
+					"name" : "appCamera-UI_autogen_timestamp_deps",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appCamera-UI_automoc_json_extraction::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appCamera-UI_automoc_json_extraction-Debug-974238aac4d81cb35bd4.json",
+					"name" : "appCamera-UI_automoc_json_extraction",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appCamera-UI_qmlimportscan::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appCamera-UI_qmlimportscan-Debug-b9e2735eaa2ccd700188.json",
+					"name" : "appCamera-UI_qmlimportscan",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appCamera-UI_qmllint::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appCamera-UI_qmllint-Debug-c8e84aac878a66775d6f.json",
+					"name" : "appCamera-UI_qmllint",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appCamera-UI_qmllint_json::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appCamera-UI_qmllint_json-Debug-10970010d9e1f2713a87.json",
+					"name" : "appCamera-UI_qmllint_json",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appCamera-UI_qmllint_module::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appCamera-UI_qmllint_module-Debug-15872c644ffa23319104.json",
+					"name" : "appCamera-UI_qmllint_module",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appCamera-UI_qmltyperegistration::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appCamera-UI_qmltyperegistration-Debug-f556f8dc5687dff273e9.json",
+					"name" : "appCamera-UI_qmltyperegistration",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appCamera-UI_tooling::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appCamera-UI_tooling-Debug-a2a2c67336115e69c369.json",
+					"name" : "appCamera-UI_tooling",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug",
+		"source" : "C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

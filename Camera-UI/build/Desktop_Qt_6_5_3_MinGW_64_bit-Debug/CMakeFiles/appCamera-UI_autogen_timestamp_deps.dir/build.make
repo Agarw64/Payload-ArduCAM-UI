@@ -69,10 +69,10 @@ CMakeFiles/appCamera-UI_autogen_timestamp_deps: .rcc/qmlcache/appCamera-UI_qmlca
 
 .rcc/qmlcache/appCamera-UI_qmlcache_loader.cpp: C:/Qt/6.5.3/mingw_64/bin/qmlcachegen.exe
 .rcc/qmlcache/appCamera-UI_qmlcache_loader.cpp: .rcc/qmlcache/appCamera-UI_qml_loader_file_list.rsp
-.rcc/qmlcache/appCamera-UI_qmlcache_loader.cpp: .rcc/qmake_Camera-UI.qrc
+.rcc/qmlcache/appCamera-UI_qmlcache_loader.cpp: .rcc/qmake_CameraUI.qrc
 .rcc/qmlcache/appCamera-UI_qmlcache_loader.cpp: .rcc/appCamera-UI_raw_qml_0.qrc
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=C:\Users\aysma\Documents\Projects\Payload-ArduCAM-UI\Camera-UI\build\Desktop_Qt_6_5_3_MinGW_64_bit-Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating .rcc/qmlcache/appCamera-UI_qmlcache_loader.cpp"
-	call .qt\bin\qt_setup_tool_path.bat C:/Qt/6.5.3/mingw_64/./bin/qmlcachegen.exe --resource-name qmlcache_appCamera-UI --resource C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.rcc/qmake_Camera-UI.qrc --resource C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.rcc/appCamera-UI_raw_qml_0.qrc -o C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.rcc/qmlcache/appCamera-UI_qmlcache_loader.cpp @C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.rcc/qmlcache/appCamera-UI_qml_loader_file_list.rsp
+	call .qt\bin\qt_setup_tool_path.bat C:/Qt/6.5.3/mingw_64/./bin/qmlcachegen.exe --resource-name qmlcache_appCamera-UI --resource C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.rcc/qmake_CameraUI.qrc --resource C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.rcc/appCamera-UI_raw_qml_0.qrc -o C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.rcc/qmlcache/appCamera-UI_qmlcache_loader.cpp @C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.rcc/qmlcache/appCamera-UI_qml_loader_file_list.rsp
 
 CMakeFiles/appCamera-UI_autogen_timestamp_deps.dir/codegen:
 .PHONY : CMakeFiles/appCamera-UI_autogen_timestamp_deps.dir/codegen

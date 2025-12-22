@@ -1,5 +1,5 @@
 <RCC>
-  <qresource prefix="/qt/qml/Camera-UI/">
+  <qresource prefix="/qt/qml/CameraUI/">
     <file alias="Main.qml">C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/Main.qml</file>
   </qresource>
 </RCC>

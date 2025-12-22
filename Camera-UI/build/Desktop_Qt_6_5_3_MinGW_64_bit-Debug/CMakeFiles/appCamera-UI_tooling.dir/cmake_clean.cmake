@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "Camera-UI/Main.qml"
+  "CameraUI/Main.qml"
 )
 
 # Per-language clean rules from dependency scanning.
