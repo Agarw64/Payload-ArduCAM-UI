@@ -71,6 +71,17 @@
                         "access": "public",
                         "name": "stopStreaming",
                         "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "idx",
+                                "type": "int"
+                            }
+                        ],
+                        "name": "setExposureEVIndex",
+                        "returnType": "void"
                     }
                 ],
                 "object": true,

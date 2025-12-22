@@ -752,6 +752,7 @@ appCamera-UI_autogen/timestamp: \
 	C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/ArducamController.cpp \
 	C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/ArducamController.h \
 	C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/CMakeLists.txt \
+	C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/arducamcontroller.h \
 	C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.qtc/package-manager/auto-setup.cmake \
 	C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.rcc/qmlcache/appCamera-UI_qmlcache_loader.cpp \
 	C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/Camera-UI/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/CMakeFiles/3.31.3/CMakeCXXCompiler.cmake \

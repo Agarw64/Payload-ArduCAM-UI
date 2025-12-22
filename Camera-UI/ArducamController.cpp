@@ -154,3 +154,33 @@ void ArduCamController::onError(QSerialPort::SerialPortError e) {
     if (e == QSerialPort::NoError) return;
     emit logLine(QString("Serial error: %1").arg(m_serial.errorString()));
 }
+
+void ArduCamController::setExposureEVIndex(int idx)
+{
+    if (!m_serial.isOpen())
+        return;
+
+    // Map UI index -> command byte in your sketch
+    // 0: -1.7EV  -> 0xA0
+    // 1: -1.3EV  -> 0xA1
+    // 2: -1.0EV  -> 0xA2
+    // 3: -0.7EV  -> 0xA3
+    // 4: -0.3EV  -> 0xA4
+    // 5: default -> 0xA5
+    // 6: +0.7EV  -> 0xA6
+    // 7: +1.0EV  -> 0xA7
+    // 8: +1.3EV  -> 0xA8
+    // 9: +1.7EV  -> 0xA9
+
+    static const quint8 cmds[] = {
+        0xA0, 0xA1, 0xA2, 0xA3, 0xA4,
+        0xA5,
+        0xA6, 0xA7, 0xA8, 0xA9
+    };
+
+    if (idx < 0 || idx >= int(sizeof(cmds)/sizeof(cmds[0])))
+        return;
+
+    sendByte(cmds[idx]);   // your existing helper that writes a 1-byte command
+}
+

@@ -127,6 +127,37 @@ ApplicationWindow {
                     }
                 }
 
+                GroupBox {
+                    title: "Exposure (EV)"
+                    Layout.fillWidth: true
+
+                    ColumnLayout {
+                        spacing: 8
+
+                        ComboBox {
+                            id: exposureCombo
+                            Layout.fillWidth: true
+                            enabled: ArduCam.connected
+
+                            model: [
+                                "-1.7 EV",
+                                "-1.3 EV",
+                                "-1.0 EV",
+                                "-0.7 EV",
+                                "-0.3 EV",
+                                "Default",
+                                "+0.7 EV",
+                                "+1.0 EV",
+                                "+1.3 EV",
+                                "+1.7 EV"
+                            ]
+
+                            currentIndex: 5  // default
+                            onActivated: ArduCam.setExposureEVIndex(currentIndex)
+                        }
+                    }
+                }
+
                 Item { Layout.fillHeight: true } // spacer
             }
         }

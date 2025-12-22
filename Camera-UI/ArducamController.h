@@ -30,6 +30,8 @@ public:
     Q_INVOKABLE void startStreaming();     // 0x20
     Q_INVOKABLE void stopStreaming();      // 0x21
 
+    Q_INVOKABLE void setExposureEVIndex(int idx);
+
 signals:
     void connectedChanged();
     void streamingChanged();
