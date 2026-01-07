@@ -1,0 +1,1 @@
+RED and BLUE LED circuits used a 220 ohm resistor, GREEN was not bright enough with this setup, hence the 220 ohm resistor was omitted from all GREEN image captures.

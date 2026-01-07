@@ -1,0 +1,1228 @@
+COM COM3 is open!
+ACK CMD switch to OV5642_320x240 END
+ACK CMD switch to OV5642_320x240 END
+ACK CMD switch to OV5642_2592x1944 END
+ACK CMD AE MANUAL END
+ACK CMD EXP_US 500 END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+107304
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+117160
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+111736
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+104168
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+104280
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_025641_233.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+104088
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_025646_018.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+103944
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_025649_488.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+103736
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_025653_078.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+103624
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_025657_493.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+99112
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+110840
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+99080
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+99064
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+99288
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+117816
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+99064
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_025849_773.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+118408
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_025909_018.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+118392
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_025914_486.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+118344
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_025918_878.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+118200
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_025923_148.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+118168
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_025930_482.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+170760
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+169224
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030012_178.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+169336
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030017_916.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+169048
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030022_843.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+168744
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030032_298.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+168888
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030036_968.jpg
+ACK CMD EXP_US 1000 END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+152808
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+148184
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030130_363.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+152312
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030135_390.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+151480
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030140_708.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+152104
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030145_518.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+151688
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030150_708.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+107736
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+126392
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+125800
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030245_048.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+125448
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030249_173.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+125160
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030252_898.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+124840
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030258_358.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+124808
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030302_228.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+190552
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+191272
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030343_879.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+190840
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030349_608.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+190984
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030354_938.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+190824
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030400_408.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+190904
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030405_878.jpg
+ACK CMD EXP_US 2000 END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+150760
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+148424
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030531_433.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+148200
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030536_498.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+147880
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030541_422.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+148008
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030547_158.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+147960
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030552_624.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+143256
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+141688
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030629_013.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+140344
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030638_048.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+140008
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030642_703.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+139496
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030648_028.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+139336
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030652_559.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+152712
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+152616
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030737_928.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+152760
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030742_598.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+152760
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030747_258.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+152744
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030751_932.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+153048
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030756_338.jpg
+ACK CMD EXP_US 500 END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+139496
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+140344
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030923_513.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+139704
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030927_767.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+135320
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030932_333.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+120184
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030936_248.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+123480
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_030940_728.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+115432
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+115192
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031021_998.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+115112
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031028_003.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+114952
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031031_998.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+114664
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031036_791.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+114264
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031041_848.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+191512
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+189944
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031113_178.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+190712
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031118_798.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+191800
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031125_088.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+192280
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031130_568.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+190616
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031135_998.jpg
+ACK CMD EXP_US 500 END
+ACK CMD EXP_US 1000 END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+148296
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+144296
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031236_133.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+144456
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031241_203.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+144632
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031245_868.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+140936
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031409_793.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+137272
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031416_369.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+116376
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+116008
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031449_218.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+115848
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031453_213.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+115784
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031458_008.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+115816
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031502_549.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+115656
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031506_278.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+155768
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+156824
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031551_888.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+155704
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031558_128.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+156984
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031602_548.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+155848
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031608_671.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+155880
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031613_598.jpg
+ACK CMD EXP_US 2000 END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+148840
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+148856
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031706_368.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+148984
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031711_038.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+148744
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031715_568.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+149000
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031719_838.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+148872
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031724_228.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+135816
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+134840
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031754_448.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+134376
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031759_238.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+133816
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031803_094.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+133368
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031807_748.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+133000
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031815_208.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+154152
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+153992
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031856_218.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+153672
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031901_408.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+153576
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031907_141.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+153576
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031912_340.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+153880
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_031917_020.jpg
+ACK CMD EXP_US 500 END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+118632
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+119160
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032040_488.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+119128
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032047_154.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+118536
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032051_008.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+119112
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032101_288.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+118440
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032106_198.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+108840
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+108936
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032141_048.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+108616
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032146_513.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+108552
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032149_978.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+108616
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032154_247.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+108600
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032201_058.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+149768
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+149640
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032233_582.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+149672
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032237_987.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+150056
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032245_062.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+150168
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032249_858.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+149784
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032254_133.jpg
+ACK CMD EXP_US 1000 END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+148168
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+147560
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032351_268.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+147480
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032357_660.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+147880
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032402_608.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+147784
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032407_273.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+147768
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032411_674.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+122456
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+121384
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032458_538.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+121800
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032502_268.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+121304
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032506_001.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+121208
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032509_598.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+121048
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032514_788.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+121128
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032519_589.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+178440
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+179048
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032549_588.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+180296
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032554_418.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+181448
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032600_838.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+179528
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032606_128.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+178696
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032611_318.jpg
+ACK CMD EXP_US 2000 END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+144552
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+145336
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032704_413.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+145096
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032708_808.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+145432
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032713_488.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+145320
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032718_414.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+145496
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032723_101.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+129624
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+129208
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032818_978.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+129240
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032823_778.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+128856
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032827_773.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+128664
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032832_963.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+129240
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032836_860.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+148888
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+148424
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032907_283.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+148984
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032911_558.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+148632
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032915_690.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+149064
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032919_838.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+148888
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_032923_958.jpg
+ACK CMD EXP_US 500 END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+118440
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+117912
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033050_449.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+118472
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033055_528.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+116936
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033059_359.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+116968
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033102_963.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+116776
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033108_958.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+107800
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+108408
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033146_099.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+107688
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033149_548.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+108152
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033152_893.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+107064
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033157_008.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+108088
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033201_693.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+139896
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+138888
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033229_328.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+138472
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033234_248.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+138168
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033238_248.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+138936
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033244_533.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+140408
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033251_268.jpg
+ACK CMD EXP_US 1000 END
+ACK CMD EXP_US 10000 END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+147608
+ACK IMG END
+ACK CMD EXP_US 1000 END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+137992
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+137672
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033407_568.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+137480
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033412_363.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+137480
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033417_160.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+137624
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033421_828.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+138808
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033426_118.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+114680
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+114392
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033457_437.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+115656
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033501_598.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+114856
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033505_311.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+114856
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033508_908.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+115272
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033515_188.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+149640
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+149544
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033542_241.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+146152
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033546_833.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+145944
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033551_220.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+145416
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033555_480.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+145736
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033559_618.jpg
+ACK CMD EXP_US 2000 END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+163960
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+141832
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+141816
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033640_330.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+140952
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033644_852.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+140456
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033706_163.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+141736
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033710_328.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+141720
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033714_318.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+141720
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033718_328.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+141032
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033722_438.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+100520
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+127064
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+127080
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033801_858.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+126072
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033805_568.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+125976
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033809_159.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+126536
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033813_043.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+126456
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033816_638.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+154216
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+153736
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033843_398.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+152856
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033847_642.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+152360
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033852_838.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+152584
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033858_448.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+153288
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_033904_988.jpg
+ACK CMD EXP_US 4000 END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+144152
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+143896
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_034014_238.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+142952
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_034019_952.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+142504
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_034024_608.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+142472
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_034033_408.jpg
+ACK CMD CAM Capture Done. END
+142472
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+142776
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_034045_009.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+132936
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+134632
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_034114_297.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+134408
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_034118_288.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+132552
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_034123_578.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+132808
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_034129_978.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+133064
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_034134_128.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+134312
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_034140_309.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+154808
+ACK IMG END
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+150872
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_034214_928.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+151496
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_034219_748.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+155288
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_034224_103.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+155592
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_034228_510.jpg
+ACK CMD CAM start single shoot. END
+ACK CMD CAM Capture Done. END
+153800
+ACK IMG END
+Saved single shot: C:/Users/aysma/Documents/Projects/Payload-ArduCAM-UI/release-debug/temp/shot_20260102_034232_740.jpg
+COM is closed!
