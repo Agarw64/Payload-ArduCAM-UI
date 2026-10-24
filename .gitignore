@@ -52,3 +52,6 @@ compile_commands.json
 *creator.user*
 
 *_qmlcache.qrc
+
+# Unzipped app build: Qt DLLs are ignored above, so only release-raw.zip is committed
+/release-raw/

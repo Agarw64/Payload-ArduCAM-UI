@@ -4,6 +4,14 @@ Qt host app (`Camera-UI/`) and Arduino firmware (`Camera-Firmware/`) for the Ard
 
 The ArduCAM library's `memorysaver.h` must have `#define OV5642_MINI_5MP_PLUS` enabled (and every other platform commented out).
 
+## Running the app
+
+Extract **`release-raw.zip`** and run `release-raw\appCamera-UI.exe` from the extracted folder. It includes all the Qt DLLs; no Qt install is needed.
+
+`release-debug.zip` is the older JPEG-only build. Don't run the `.exe` in the `release-debug/` folder directly: its DLLs were never committed (`*.dll` is gitignored), so it fails with "Qt6Gui.dll was not found".
+
+To rebuild: Qt 6.5.3 MinGW 64-bit with Qt Serial Port. Build `Camera-UI/CMakeLists.txt` in Release, then run `windeployqt --qmldir Camera-UI appCamera-UI.exe` (without `--release`, which fails with "Unable to find the platform plugin" on MinGW builds).
+
 ## RAW capture
 
 1. Connect, then click **RAW Init**. The sensor starts at 640x480.

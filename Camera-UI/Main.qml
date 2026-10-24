@@ -6,7 +6,7 @@ import CameraUI 1.0
 ApplicationWindow {
     visible: true
     width: 1100
-    height: 800
+    height: 650
     title: "ArduCAM Host (Qt)"
 
     property real zoom: zoomSlider.value
@@ -34,6 +34,9 @@ ApplicationWindow {
         Frame {
             Layout.preferredWidth: 360
             Layout.fillHeight: true
+            // Size comes from the layout; sizing from the scrolled content would be a binding loop
+            contentWidth: 0
+            contentHeight: 0
 
             ScrollView {
                 id: leftScroll
