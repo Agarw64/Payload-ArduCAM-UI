@@ -5,11 +5,25 @@ import CameraUI 1.0
 
 ApplicationWindow {
     visible: true
-    width: 1000
-    height: 600
+    width: 1100
+    height: 800
     title: "ArduCAM Host (Qt)"
 
     property real zoom: zoomSlider.value
+
+    function hex(v, digits) {
+        return ("0000" + v.toString(16).toUpperCase()).slice(-digits)
+    }
+
+    // Init and size changes reload the sensor's register tables, which wipes exposure settings
+    function reapplyExposure() {
+        if (!autoExp.checked) {
+            ArduCam.setAutoExposure(false)
+            ArduCam.setExposureUs(Math.round(expSlider.value))
+        } else if (evCombo.currentIndex !== 5) {
+            ArduCam.setExposureEVIndex(evCombo.currentIndex)
+        }
+    }
 
     RowLayout {
         anchors.fill: parent
@@ -18,11 +32,17 @@ ApplicationWindow {
 
         // LEFT PANEL (controls)
         Frame {
-            Layout.preferredWidth: 320
+            Layout.preferredWidth: 360
             Layout.fillHeight: true
 
-            ColumnLayout {
+            ScrollView {
+                id: leftScroll
                 anchors.fill: parent
+                contentWidth: availableWidth
+                clip: true
+
+            ColumnLayout {
+                width: leftScroll.availableWidth
                 spacing: 10
 
                 GroupBox {
@@ -75,30 +95,57 @@ ApplicationWindow {
 
                         RowLayout {
                             Layout.fillWidth: true
-                            Label { text: "Pix:"; Layout.preferredWidth: 60 }
-                            ComboBox {
-                                id: resCombo
+                            Button {
+                                text: "JPEG Init"
                                 Layout.fillWidth: true
-                                model: [
-                                    "320x240",
-                                    "640x480",
-                                    "1024x768",
-                                    "1280x960",
-                                    "1600x1200",
-                                    "2048x1536",
-                                    "2592x1944"
-                                ]
-                                onActivated: ArduCam.setResolution(currentIndex)
+                                enabled: ArduCam.connected && !ArduCam.streaming && !ArduCam.transferActive
+                                onClicked: {
+                                    ArduCam.jpegInit()
+                                    resCombo.currentIndex = 0   // init leaves the sensor at 320x240
+                                    reapplyExposure()
+                                }
                             }
+                            Button {
+                                text: "RAW Init"
+                                Layout.fillWidth: true
+                                enabled: ArduCam.connected && !ArduCam.streaming && !ArduCam.transferActive
+                                onClicked: {
+                                    ArduCam.rawInit()
+                                    resCombo.currentIndex = 0   // init leaves the sensor at 640x480
+                                    reapplyExposure()
+                                }
+                            }
+                        }
+
+                        Label {
+                            text: "Mode: " + (ArduCam.rawMode ? "RAW8 Bayer (uncompressed)" : "JPEG")
+                            font.bold: true
                         }
 
                         RowLayout {
                             Layout.fillWidth: true
-                            Button {
-                                text: "JPEG Init"
+                            Label { text: "Pix:"; Layout.preferredWidth: 60 }
+                            ComboBox {
+                                id: resCombo
                                 Layout.fillWidth: true
-                                enabled: ArduCam.connected
-                                onClicked: ArduCam.jpegInit()
+                                enabled: !ArduCam.transferActive
+                                model: ArduCam.rawMode
+                                       ? [ "640x480", "1280x960", "1920x1080", "2592x1944" ]
+                                       : [ "320x240",
+                                           "640x480",
+                                           "1024x768",
+                                           "1280x960",
+                                           "1600x1200",
+                                           "2048x1536",
+                                           "2592x1944" ]
+                                onActivated: {
+                                    if (ArduCam.rawMode) {
+                                        ArduCam.setRawSize(currentIndex)
+                                        reapplyExposure()
+                                    } else {
+                                        ArduCam.setResolution(currentIndex)
+                                    }
+                                }
                             }
                         }
 
@@ -107,17 +154,64 @@ ApplicationWindow {
                             spacing: 10
 
                             Button {
-                                text: "Capture (Single)"
+                                text: ArduCam.rawMode ? "Capture RAW" : "Capture (Single)"
                                 Layout.fillWidth: true
-                                enabled: ArduCam.connected && !ArduCam.streaming
-                                onClicked: ArduCam.captureSingle()
+                                enabled: ArduCam.connected && !ArduCam.streaming && !ArduCam.transferActive
+                                onClicked: {
+                                    if (ArduCam.rawMode) ArduCam.captureRaw()
+                                    else ArduCam.captureSingle()
+                                }
                             }
 
                             CheckBox {
+                                visible: !ArduCam.rawMode
                                 text: "Save single shots to ./temp"
                                 enabled: ArduCam.connected && !ArduCam.streaming
                                 checked: ArduCam.saveSingleShots
                                 onToggled: ArduCam.saveSingleShots = checked
+                            }
+
+                            Button {
+                                visible: ArduCam.rawMode
+                                text: "Resend last"
+                                enabled: ArduCam.connected && !ArduCam.transferActive
+                                onClicked: ArduCam.resendRaw()
+                            }
+                        }
+
+                        ColumnLayout {
+                            Layout.fillWidth: true
+                            visible: ArduCam.rawMode
+                            spacing: 4
+
+                            Label {
+                                text: "RAW shots are always saved to ./temp (.raw + .png + .json)"
+                                opacity: 0.6
+                                wrapMode: Text.Wrap
+                                Layout.fillWidth: true
+                            }
+
+                            RowLayout {
+                                Layout.fillWidth: true
+                                visible: ArduCam.transferActive
+                                ProgressBar {
+                                    Layout.fillWidth: true
+                                    from: 0
+                                    to: 1
+                                    value: ArduCam.transferProgress
+                                }
+                                Label { text: Math.round(ArduCam.transferProgress * 100) + "%" }
+                            }
+
+                            RowLayout {
+                                Layout.fillWidth: true
+                                Label { text: "Preview:"; Layout.preferredWidth: 60 }
+                                ComboBox {
+                                    Layout.fillWidth: true
+                                    model: [ "Mosaic (gray)", "BGGR", "GBRG", "GRBG", "RGGB" ]
+                                    currentIndex: ArduCam.bayerPattern
+                                    onActivated: ArduCam.bayerPattern = currentIndex
+                                }
                             }
                         }
 
@@ -126,7 +220,7 @@ ApplicationWindow {
                             Button {
                                 text: ArduCam.streaming ? "Stop Streaming" : "Start Streaming"
                                 Layout.fillWidth: true
-                                enabled: ArduCam.connected
+                                enabled: ArduCam.connected && !ArduCam.rawMode && !ArduCam.transferActive
                                 onClicked: {
                                     if (!ArduCam.streaming) ArduCam.startStreaming()
                                     else ArduCam.stopStreaming()
@@ -283,7 +377,105 @@ ApplicationWindow {
                     }
                 }
 
-                Item { Layout.fillHeight: true } // spacer
+                GroupBox {
+                    title: "ISP Control 00 (0x5000)"
+                    Layout.fillWidth: true
+
+                    ColumnLayout {
+                        spacing: 4
+                        enabled: ArduCam.connected && !ArduCam.transferActive
+
+                        RowLayout {
+                            Layout.fillWidth: true
+                            Label {
+                                Layout.fillWidth: true
+                                text: ArduCam.isp5000 < 0 ? "Value: unknown" : "Value: 0x" + hex(ArduCam.isp5000, 2)
+                            }
+                            Button {
+                                text: "Read"
+                                onClicked: ArduCam.readRegister(0x5000)
+                            }
+                        }
+
+                        Repeater {
+                            // Bit meanings from OV5642 datasheet table 5-1
+                            model: [
+                                { bit: 7, name: "LENC correction" },
+                                { bit: 6, name: "Gamma (YUV domain)" },
+                                { bit: 5, name: "RAW gamma" },
+                                { bit: 4, name: "Even odd removing" },
+                                { bit: 3, name: "De-noise" },
+                                { bit: 2, name: "Black pixel cancellation" },
+                                { bit: 1, name: "White pixel cancellation" },
+                                { bit: 0, name: "Color interpolation (CIP)" }
+                            ]
+
+                            CheckBox {
+                                text: "[" + modelData.bit + "] " + modelData.name
+                                enabled: ArduCam.isp5000 >= 0
+                                checked: ArduCam.isp5000 >= 0 && (ArduCam.isp5000 & (1 << modelData.bit)) !== 0
+                                onToggled: {
+                                    ArduCam.writeRegister(0x5000, ArduCam.isp5000 ^ (1 << modelData.bit))
+                                    // Show what the sensor reports back, not what was clicked
+                                    checked = Qt.binding(() => ArduCam.isp5000 >= 0
+                                                         && (ArduCam.isp5000 & (1 << modelData.bit)) !== 0)
+                                }
+                            }
+                        }
+                    }
+                }
+
+                GroupBox {
+                    title: "Sensor register (any)"
+                    Layout.fillWidth: true
+
+                    ColumnLayout {
+                        spacing: 6
+                        enabled: ArduCam.connected && !ArduCam.transferActive
+
+                        RowLayout {
+                            Layout.fillWidth: true
+                            Label { text: "Addr 0x" }
+                            TextField {
+                                id: regAddr
+                                Layout.preferredWidth: 70
+                                placeholderText: "5001"
+                                validator: RegularExpressionValidator { regularExpression: /[0-9A-Fa-f]{1,4}/ }
+                            }
+                            Label { text: "Val 0x" }
+                            TextField {
+                                id: regVal
+                                Layout.preferredWidth: 50
+                                placeholderText: "FF"
+                                validator: RegularExpressionValidator { regularExpression: /[0-9A-Fa-f]{1,2}/ }
+                            }
+                        }
+
+                        RowLayout {
+                            Layout.fillWidth: true
+                            Button {
+                                text: "Read"
+                                Layout.fillWidth: true
+                                enabled: regAddr.text.length > 0
+                                onClicked: ArduCam.readRegister(parseInt(regAddr.text, 16))
+                            }
+                            Button {
+                                text: "Write"
+                                Layout.fillWidth: true
+                                enabled: regAddr.text.length > 0 && regVal.text.length > 0
+                                onClicked: ArduCam.writeRegister(parseInt(regAddr.text, 16), parseInt(regVal.text, 16))
+                            }
+                        }
+
+                        Label {
+                            text: "Result appears in the log as \"ACK REG <addr> <value>\""
+                            opacity: 0.6
+                            wrapMode: Text.Wrap
+                            Layout.fillWidth: true
+                        }
+                    }
+                }
+            }
             }
         }
 
