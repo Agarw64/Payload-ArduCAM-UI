@@ -1,8 +1,14 @@
 #include "ArduCamController.h"
 #include <QSerialPortInfo>
+#include <QDateTime>
+#include <QDir>
+#include <QFile>
 
 static constexpr int kMaxRawRetries = 3;
 static constexpr int kRawStallMs = 3000;
+// Must match RAW_BLOCK_BYTES / RAW_BLOCK_ACK in the firmware
+static constexpr qint64 kRawBlockBytes = 120;
+static constexpr quint8 kRawBlockAck = 0xFE;
 
 static bool endsWithFF_D9(const QByteArray& data) {
     int n = data.size();
@@ -262,8 +268,10 @@ void ArduCamController::handleTextLine(const QString& line) {
         m_currentRaw.reserve(m_rawExpected);
         m_state = RxState::Raw;
         setTransferActive(true);
+        m_rawAcked = 0;
         m_rawStallTimer.start();
         emit transferChanged();
+        sendByte(kRawBlockAck);   // ready for the first block
         return;
     }
 
@@ -323,6 +331,14 @@ void ArduCamController::onReadyRead() {
                 m_rawStallTimer.start();
                 emit transferChanged();
 
+                // Ask for the next block once this one has fully arrived
+                const qint64 pixelBytes = m_rawExpected - 4;
+                while (m_rawAcked + kRawBlockBytes < pixelBytes &&
+                       m_rawAcked + kRawBlockBytes <= m_currentRaw.size()) {
+                    m_rawAcked += kRawBlockBytes;
+                    sendByte(kRawBlockAck);
+                }
+
                 if (m_currentRaw.size() == m_rawExpected)
                     finishRawFrame();
             }
@@ -368,6 +384,15 @@ void ArduCamController::finishRawFrame() {
     m_currentRaw.clear();
 
     if (sent != got) {
+        // Keep the bad attempt: comparing the resends of one frame shows which bytes were damaged
+        QDir dir(QDir::currentPath());
+        dir.mkpath("temp/crc_fail");
+        QFile bad(dir.filePath(QString("temp/crc_fail/%1_sent%2_got%3.bin")
+                                   .arg(QDateTime::currentDateTime().toString("yyyyMMdd_HHmmss_zzz"))
+                                   .arg(sent, 8, 16, QChar('0')).arg(got, 8, 16, QChar('0'))));
+        if (bad.open(QIODevice::WriteOnly))
+            bad.write(pixels);
+
         retryRaw(QString("CRC mismatch (sent %1, received %2)")
                      .arg(sent, 8, 16, QChar('0')).arg(got, 8, 16, QChar('0')));
         return;

@@ -41,7 +41,7 @@ public:
 
     Q_INVOKABLE QStringList availablePorts() const;
 
-    Q_INVOKABLE void connectPort(const QString& portName, int baud = 921600);
+    Q_INVOKABLE void connectPort(const QString& portName, int baud = 500000);
     Q_INVOKABLE void disconnectPort();
 
     Q_INVOKABLE void setResolution(int code0to6);
@@ -133,6 +133,7 @@ private:
     int m_rawWidth = 0;
     int m_rawHeight = 0;
     qint64 m_rawExpected = 0;    // pixel bytes + 4 CRC bytes
+    qint64 m_rawAcked = 0;       // pixel bytes acknowledged to the firmware
     int m_rawRetries = 0;
     QTimer m_rawStallTimer;
 
