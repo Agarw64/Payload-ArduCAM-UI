@@ -68,9 +68,11 @@ ApplicationWindow {
                             Layout.fillWidth: true
                             Label { text: "Baud:"; Layout.preferredWidth: 60 }
                             ComboBox {
+                                id: baudCombo
                                 Layout.fillWidth: true
-                                model: [ "921600", "115200" ]
+                                model: [ "500000", "921600", "115200" ]
                                 currentIndex: 0
+                                enabled: !ArduCam.connected
                             }
                         }
 
@@ -81,7 +83,7 @@ ApplicationWindow {
                                 Layout.fillWidth: true
                                 onClicked: {
                                     if (!ArduCam.connected)
-                                        ArduCam.connectPort(portCombo.currentText, 921600)
+                                        ArduCam.connectPort(portCombo.currentText, parseInt(baudCombo.currentText))
                                     else
                                         ArduCam.disconnectPort()
                                 }
@@ -282,6 +284,8 @@ ApplicationWindow {
                                 enabled: ArduCam.connected
                                 onToggled: {
                                     ArduCam.setAutoExposure(checked)
+                                    if (!checked)
+                                        ArduCam.setExposureUs(Math.round(expSlider.value))
                                 }
                             }
                         }

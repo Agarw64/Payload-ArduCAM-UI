@@ -43,6 +43,10 @@ uint8_t read_fifo_burst(ArduCAM myCAM);
 // RAW (Bayer, 8 bits per pixel) capture.
 // Frame on the wire: "ACK RAW <w> <h> <len> END\r\n", then exactly <len> pixel
 // bytes, then the CRC32 of those bytes (4 bytes, little endian; same as zlib.crc32).
+// The host sends RAW_BLOCK_ACK after the header line and after every RAW_BLOCK_BYTES
+// pixel bytes except the last block; nothing more is sent until it arrives. The Uno's
+// 16U2 USB chip has a 128-byte buffer that silently overwrites itself if USB stalls,
+// so never having more than one block in flight is what keeps frames intact.
 #define CMD_RAW_INIT            0x12
 #define CMD_SET_RAW_SIZE        0x13  // + 1 byte: 0=640x480 1=1280x960 2=1920x1080 3=2592x1944
 #define CMD_CAPTURE_RAW         0x14
@@ -57,6 +61,9 @@ uint8_t read_fifo_burst(ArduCAM myCAM);
 // (symptom: FIFO length reported as w*h+1 and the image is shifted by one pixel).
 #define RAW_BURST_DUMMY_BYTE    0
 #define RAW_CAPTURE_TIMEOUT_MS  5000UL
+#define RAW_BLOCK_BYTES         120
+#define RAW_BLOCK_ACK           0xFE  // not a command byte, so a late ACK is ignored
+#define RAW_ACK_TIMEOUT_MS      2000UL
 
 static const uint8_t  RAW_SIZES[4] = { OV5642_640x480, OV5642_1280x960, OV5642_1920x1080, OV5642_2592x1944 };
 static const uint16_t RAW_W[4]     = { 640, 1280, 1920, 2592 };
@@ -194,6 +201,15 @@ static void rawInit() {
   Serial.println(F("ACK CMD RAW init 640x480 END"));
 }
 
+static bool waitForBlockAck() {
+  unsigned long start = millis();
+  while (millis() - start <= RAW_ACK_TIMEOUT_MS) {
+    if (Serial.available() && Serial.read() == RAW_BLOCK_ACK)
+      return true;
+  }
+  return false;
+}
+
 static void sendRawFrame(bool rewind) {
   uint32_t len = (uint32_t)g_rawFrameW * g_rawFrameH;
   Serial.print(F("ACK RAW "));
@@ -204,10 +220,13 @@ static void sendRawFrame(bool rewind) {
   Serial.print(len);
   Serial.println(F(" END"));
 
+  if (!waitForBlockAck())
+    return;   // the host's stall timer asks for a resend
+
   if (rewind)
     myCAM.write_reg(ARDUCHIP_FIFO, FIFO_RDPTR_RST_MASK);
 
-  uint8_t buf[64];
+  uint8_t buf[RAW_BLOCK_BYTES];
   uint32_t crc = 0xFFFFFFFFUL;
   myCAM.CS_LOW();
   myCAM.set_fifo_burst();
@@ -224,6 +243,10 @@ static void sendRawFrame(bool rewind) {
     // Chunked writes: much faster than per-byte writes on native-USB boards (Leonardo)
     Serial.write(buf, n);
     len -= n;
+    if (len && !waitForBlockAck()) {
+      myCAM.CS_HIGH();
+      return;
+    }
   }
   myCAM.CS_HIGH();
 
@@ -588,7 +611,8 @@ uint8_t temp;
   Serial.begin(115200);
 #else
   Wire.begin();
-  Serial.begin(921600);
+  // 500000 is exact on a 16 MHz AVR; 921600 really runs at 1000000 and corrupts RAW frames
+  Serial.begin(500000);
 #endif
 Serial.println(F("ACK CMD ArduCAM Start! END"));
 // set the CS as an output:
