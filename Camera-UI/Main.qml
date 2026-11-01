@@ -70,7 +70,7 @@ ApplicationWindow {
                             ComboBox {
                                 id: baudCombo
                                 Layout.fillWidth: true
-                                model: [ "500000", "921600", "115200" ]
+                                model: [ "1000000", "500000", "115200" ]
                                 currentIndex: 0
                                 enabled: !ArduCam.connected
                             }

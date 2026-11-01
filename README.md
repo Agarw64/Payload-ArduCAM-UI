@@ -14,7 +14,7 @@ To rebuild: Qt 6.5.3 MinGW 64-bit with Qt Serial Port. Build `Camera-UI/CMakeLis
 
 ## RAW capture
 
-1. Connect at 500000 baud, then click **RAW Init**. The sensor starts at 640x480.
+1. Connect at 1000000 baud, then click **RAW Init**. The sensor starts at 640x480.
 2. Pick a size (640x480, 1280x960, 1920x1080, 2592x1944) and click **Capture RAW**.
    The firmware and app must come from the same version: RAW frames are sent in acknowledged blocks, and a mismatched pair stalls.
 3. Each frame is CRC-checked. A corrupted or stalled transfer is re-sent automatically (up to 3 times) without taking a new photo.
@@ -48,4 +48,4 @@ img = np.fromfile("raw_..._1280x960.raw", dtype=np.uint8).reshape(960, 1280)
 | `0x16` | u16 addr LE, u8 value | Write a sensor register (replies with a read-back) |
 | `0x17` | u16 addr LE | Read a sensor register |
 
-A RAW frame on the wire is `ACK RAW <w> <h> <len> END\r\n`, then `<len>` pixel bytes, then the CRC32 of those bytes (4 bytes, little endian; same as Python's `zlib.crc32`). The host sends one `0xFE` byte after the header line and after every 120 pixel bytes except the last block, and the firmware waits for it before sending more. The Uno's USB-serial chip has a 128-byte buffer that overwrites itself during USB pauses, so only one block is ever in flight. If no `0xFE` arrives within 2 s the firmware abandons the frame and the host's 3 s stall timer requests a resend. Register replies are `ACK REG <addr hex> <value hex> END`.
+A RAW frame on the wire is `ACK RAW <w> <h> <len> END\r\n`, then `<len>` pixel bytes, then the CRC32 of those bytes (4 bytes, little endian; same as Python's `zlib.crc32`). The host sends one `0xFE` byte after the header line and after every 97 pixel bytes except the last block, and the firmware waits for it before sending more. The Uno's USB-serial chip has a 128-byte buffer that overwrites itself during USB pauses, so only one block is ever in flight. Native-USB boards (Leonardo) have USB flow control instead, so after the first `0xFE` the firmware discards the rest, and they need RTS or DTR set on the port before they send anything. If no `0xFE` arrives within 2 s the firmware abandons the frame and the host's 3 s stall timer requests a resend. Register replies are `ACK REG <addr hex> <value hex> END`.

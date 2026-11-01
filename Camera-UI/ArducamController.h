@@ -5,6 +5,7 @@
 #include <QByteArray>
 #include <QMap>
 #include <QTimer>
+#include <QElapsedTimer>
 #include <QVariantMap>
 
 class ArduCamController : public QObject {
@@ -41,7 +42,7 @@ public:
 
     Q_INVOKABLE QStringList availablePorts() const;
 
-    Q_INVOKABLE void connectPort(const QString& portName, int baud = 500000);
+    Q_INVOKABLE void connectPort(const QString& portName, int baud = 1000000);
     Q_INVOKABLE void disconnectPort();
 
     Q_INVOKABLE void setResolution(int code0to6);
@@ -136,6 +137,8 @@ private:
     qint64 m_rawAcked = 0;       // pixel bytes acknowledged to the firmware
     int m_rawRetries = 0;
     QTimer m_rawStallTimer;
+    QElapsedTimer m_rawElapsed;  // time since the frame header arrived
+    QElapsedTimer m_rawProgressTick;
 
     QMap<int, int> m_registers;
 };
