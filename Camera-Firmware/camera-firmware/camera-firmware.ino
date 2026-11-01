@@ -61,7 +61,13 @@ uint8_t read_fifo_burst(ArduCAM myCAM);
 // (symptom: FIFO length reported as w*h+1 and the image is shifted by one pixel).
 #define RAW_BURST_DUMMY_BYTE    0
 #define RAW_CAPTURE_TIMEOUT_MS  5000UL
-#define RAW_BLOCK_BYTES         120
+#if defined(USBCON)
+// Native USB has its own flow control, so the host's block ACKs are just discarded
+#define RAW_BLOCK_BYTES         64
+#else
+// The 16U2 forwards once it holds more than 96 bytes, otherwise it waits for a 4 ms timer
+#define RAW_BLOCK_BYTES         97
+#endif
 #define RAW_BLOCK_ACK           0xFE  // not a command byte, so a late ACK is ignored
 #define RAW_ACK_TIMEOUT_MS      2000UL
 
@@ -243,10 +249,15 @@ static void sendRawFrame(bool rewind) {
     // Chunked writes: much faster than per-byte writes on native-USB boards (Leonardo)
     Serial.write(buf, n);
     len -= n;
+#if defined(USBCON)
+    while (Serial.available())
+      Serial.read();
+#else
     if (len && !waitForBlockAck()) {
       myCAM.CS_HIGH();
       return;
     }
+#endif
   }
   myCAM.CS_HIGH();
 
@@ -611,8 +622,8 @@ uint8_t temp;
   Serial.begin(115200);
 #else
   Wire.begin();
-  // 500000 is exact on a 16 MHz AVR; 921600 really runs at 1000000 and corrupts RAW frames
-  Serial.begin(500000);
+  // 1000000 is exact on a 16 MHz AVR; 921600 really runs at 1000000 and corrupts RAW frames
+  Serial.begin(1000000);
 #endif
 Serial.println(F("ACK CMD ArduCAM Start! END"));
 // set the CS as an output:

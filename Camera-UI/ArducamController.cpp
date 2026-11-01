@@ -7,8 +7,9 @@
 static constexpr int kMaxRawRetries = 3;
 static constexpr int kRawStallMs = 3000;
 // Must match RAW_BLOCK_BYTES / RAW_BLOCK_ACK in the firmware
-static constexpr qint64 kRawBlockBytes = 120;
+static constexpr qint64 kRawBlockBytes = 97;
 static constexpr quint8 kRawBlockAck = 0xFE;
+static constexpr int kRawProgressMs = 100;
 
 static bool endsWithFF_D9(const QByteArray& data) {
     int n = data.size();
@@ -67,6 +68,8 @@ void ArduCamController::connectPort(const QString& portName, int baud) {
         emit logLine(QString("ERROR: Failed to open %1").arg(portName));
         return;
     }
+    // A Leonardo sends nothing until DTR or RTS is set; DTR would reset an Uno, RTS doesn't
+    m_serial.setRequestToSend(true);
 
     m_connected = true;
     emit connectedChanged();
@@ -269,6 +272,8 @@ void ArduCamController::handleTextLine(const QString& line) {
         m_state = RxState::Raw;
         setTransferActive(true);
         m_rawAcked = 0;
+        m_rawElapsed.start();
+        m_rawProgressTick.start();
         m_rawStallTimer.start();
         emit transferChanged();
         sendByte(kRawBlockAck);   // ready for the first block
@@ -329,7 +334,6 @@ void ArduCamController::onReadyRead() {
                 m_currentRaw += m_rxBuffer.left(take);
                 m_rxBuffer.remove(0, take);
                 m_rawStallTimer.start();
-                emit transferChanged();
 
                 // Ask for the next block once this one has fully arrived
                 const qint64 pixelBytes = m_rawExpected - 4;
@@ -337,6 +341,12 @@ void ArduCamController::onReadyRead() {
                        m_rawAcked + kRawBlockBytes <= m_currentRaw.size()) {
                     m_rawAcked += kRawBlockBytes;
                     sendByte(kRawBlockAck);
+                }
+
+                // Redrawing on every chunk would hold up the next ACK
+                if (m_rawProgressTick.elapsed() >= kRawProgressMs) {
+                    m_rawProgressTick.start();
+                    emit transferChanged();
                 }
 
                 if (m_currentRaw.size() == m_rawExpected)
@@ -398,8 +408,10 @@ void ArduCamController::finishRawFrame() {
         return;
     }
 
-    emit logLine(QString("RAW frame %1x%2 received, CRC32 %3 OK")
-                     .arg(m_rawWidth).arg(m_rawHeight).arg(got, 8, 16, QChar('0')));
+    emit logLine(QString("RAW frame %1x%2 received in %3 s, CRC32 %4 OK")
+                     .arg(m_rawWidth).arg(m_rawHeight)
+                     .arg(m_rawElapsed.elapsed() / 1000.0, 0, 'f', 1)
+                     .arg(got, 8, 16, QChar('0')));
     setTransferActive(false);
     emit rawFrameReceived(pixels, m_rawWidth, m_rawHeight, got);
 
