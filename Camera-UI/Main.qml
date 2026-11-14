@@ -365,22 +365,6 @@ ApplicationWindow {
                                 }
                             }
                         }
-
-                        // Optional: line-time calibration
-                        RowLayout {
-                            Layout.fillWidth: true
-                            spacing: 8
-                            Label { text: "LineTime (µs)"; }
-                            SpinBox {
-                                id: lineTimeSpin
-                                from: 1
-                                to: 200
-                                value: 20
-                                enabled: ArduCam.connected
-                                onValueModified: ArduCam.setLineTimeUs(value)
-                            }
-                            Label { text: "(calibration)"; opacity: 0.6 }
-                        }
                     }
                 }
 

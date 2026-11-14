@@ -7,6 +7,7 @@
 #include <QTimer>
 #include <QElapsedTimer>
 #include <QVariantMap>
+#include <QJsonObject>
 
 class ArduCamController : public QObject {
     Q_OBJECT
@@ -40,6 +41,11 @@ public:
     // Every register read back since the last init, as {"0x5000": "0x4F", ...}
     QVariantMap knownRegisters() const;
 
+    // Sensor state for the most recent capture, as reported by the firmware at the moment the
+    // frame was taken: raw registers plus values decoded from them (exposure, gain, HTS/VTS...).
+    // "capture_time_registers" is false if the firmware sent no snapshot (older firmware).
+    QJsonObject captureMetadata() const;
+
     Q_INVOKABLE QStringList availablePorts() const;
 
     Q_INVOKABLE void connectPort(const QString& portName, int baud = 1000000);
@@ -63,7 +69,6 @@ public:
 
     Q_INVOKABLE void setAutoExposure(bool enable);
     Q_INVOKABLE void setExposureUs(quint32 exposureUs);
-    Q_INVOKABLE void setLineTimeUs(quint16 lineTimeUs); // optional
 
 
     Q_PROPERTY(bool saveSingleShots READ saveSingleShots WRITE setSaveSingleShots NOTIFY saveSingleShotsChanged)
@@ -141,4 +146,11 @@ private:
     QElapsedTimer m_rawProgressTick;
 
     QMap<int, int> m_registers;
+
+    // Snapshot taken when the firmware's "ACK META" line arrives (right after a capture)
+    QMap<int, int> m_captureRegisters;
+    int m_captureRowTimeNs = 0;         // 0 = no measured row time (JPEG / old firmware)
+    int m_captureRowTimeOk = -1;        // 1 = timing registers match the measured table, -1 unknown
+    int m_captureManualExposure = -1;   // -1 = unknown
+    bool m_captureMetaValid = false;
 };

@@ -127,6 +127,8 @@ void ArduCamController::captureSingle()
     m_streaming = false;
     emit streamingChanged();
 
+    m_captureMetaValid = false;   // the firmware sends a fresh snapshot with this capture
+
     // Arm saving latch ONLY for single shots
     m_pendingSingleShotSave = m_saveSingleShots;
 
@@ -169,6 +171,7 @@ void ArduCamController::setRawSize(int idx0to3) {
 void ArduCamController::captureRaw() {
     if (!m_serial.isOpen() || m_transferActive) return;
     m_rawRetries = 0;
+    m_captureMetaValid = false;   // the firmware sends a fresh snapshot with this capture
     setTransferActive(true);
     sendByte(0x14);
 }
@@ -217,6 +220,88 @@ QVariantMap ArduCamController::knownRegisters() const {
     for (auto it = m_registers.cbegin(); it != m_registers.cend(); ++it) {
         out.insert("0x" + QString::number(it.key(), 16).toUpper().rightJustified(4, '0'),
                    "0x" + QString::number(it.value(), 16).toUpper().rightJustified(2, '0'));
+    }
+    return out;
+}
+
+QJsonObject ArduCamController::captureMetadata() const {
+    QJsonObject out;
+    out["capture_time_registers"] = m_captureMetaValid;
+
+    // Without a snapshot, fall back to whatever was read last and say so
+    const QMap<int, int>& r = m_captureMetaValid ? m_captureRegisters : m_registers;
+
+    auto hex = [](int v, int digits) {
+        return "0x" + QString::number(v, 16).toUpper().rightJustified(digits, '0');
+    };
+    QJsonObject regs;
+    for (auto it = r.cbegin(); it != r.cend(); ++it)
+        regs[hex(it.key(), 4)] = hex(it.value(), 2);
+    out["registers"] = regs;
+
+    if (!m_captureMetaValid) {
+        out["note"] = "No capture-time register snapshot (old firmware?). Registers are the last values read, "
+                      "not necessarily the ones used for this frame.";
+        return out;
+    }
+
+    out["row_time_ns"] = m_captureRowTimeNs;
+    out["row_time_table_valid"] = m_captureRowTimeOk == 1;
+    out["firmware_manual_exposure_flag"] = m_captureManualExposure;
+
+    auto has = [&r](std::initializer_list<int> a) {
+        for (int x : a) if (!r.contains(x)) return false;
+        return true;
+    };
+
+    // Datasheet 4.5/4.6.2/7-5: 0x3503 [2] VTS manual, [1] AGC manual, [0] AEC manual
+    if (r.contains(0x3503)) {
+        const int m = r.value(0x3503);
+        out["aec_mode"] = (m & 0x01) ? "manual" : "auto";
+        out["agc_mode"] = (m & 0x02) ? "manual" : "auto";
+        out["vts_mode"] = (m & 0x04) ? "manual" : "auto";
+    }
+
+    // Exposure[19:0] = {0x3500[3:0], 0x3501, 0x3502}, unit = line/16 (4 fractional bits)
+    if (has({0x3500, 0x3501, 0x3502})) {
+        const int e = ((r.value(0x3500) & 0x0F) << 16) | (r.value(0x3501) << 8) | r.value(0x3502);
+        const double lines = e / 16.0;
+        out["exposure_register_value"] = e;
+        out["exposure_lines"] = lines;
+        if (m_captureRowTimeNs > 0) {
+            // Row time comes from the firmware's measured per-size table. It only holds while the
+            // timing registers are unchanged (row_time_table_valid).
+            out["exposure_us"] = lines * m_captureRowTimeNs / 1000.0;
+            out["exposure_us_note"] = m_captureRowTimeOk == 1
+                ? "exposure_lines x measured row time for this RAW size (87.5 us for 640x480/1280x960, 133.33 us for 1920x1080/2592x1944)."
+                : "Timing registers differ from the ones the row time was measured with; this value may be wrong.";
+        } else {
+            out["exposure_us_note"] = "No measured row time for this mode (JPEG); use exposure_lines only.";
+        }
+    }
+    // 0x350C/0x350D: AEC VTS = maximum exposure, in lines (datasheet 4.6.2)
+    if (has({0x350C, 0x350D}))
+        out["max_exposure_lines"] = (r.value(0x350C) << 8) | r.value(0x350D);
+
+    // Gain: 9 bits, high bit in bit0 of the first register. 0x350A/B is what the sensor is
+    // given (and what manual gain writes); 0x3508/9 is the AEC long-channel output.
+    if (has({0x350A, 0x350B}))
+        out["gain_register_value"] = ((r.value(0x350A) & 1) << 8) | r.value(0x350B);
+    if (has({0x3508, 0x3509}))
+        out["gain_long_channel_register_value"] = ((r.value(0x3508) & 1) << 8) | r.value(0x3509);
+    if (out.contains("gain_register_value"))
+        out["gain_note"] = "Raw register value. The datasheet gives no gain-multiplier formula (only 'max 64x'), so none is derived.";
+
+    // Datasheet table 7-6: 12-bit HTS in {0x380C[3:0], 0x380D}, VTS in {0x380E[3:0], 0x380F}
+    if (has({0x380C, 0x380D}))
+        out["hts"] = ((r.value(0x380C) & 0x0F) << 8) | r.value(0x380D);
+    if (has({0x380E, 0x380F}))
+        out["vts"] = ((r.value(0x380E) & 0x0F) << 8) | r.value(0x380F);
+
+    // 0x3818 [6] mirror, [5] vertical flip: both change the Bayer order
+    if (r.contains(0x3818)) {
+        out["mirror"] = bool(r.value(0x3818) & 0x40);
+        out["vertical_flip"] = bool(r.value(0x3818) & 0x20);
     }
     return out;
 }
@@ -290,6 +375,27 @@ void ArduCamController::handleTextLine(const QString& line) {
             m_registers.insert(addr, val);
             emit registersChanged();
         }
+        return;
+    }
+
+    // "ACK META row_time_ns=<n> row_time_ok=<0|1> manual_exposure=<0|1> END": last line of the register block the
+    // firmware prints right after a capture. The ACK REG lines before it are the sensor state
+    // for that frame, so freeze them now (m_registers keeps changing with later reads).
+    if (line.startsWith("ACK META ")) {
+        m_captureRegisters = m_registers;
+        m_captureRowTimeNs = 0;
+        m_captureRowTimeOk = -1;
+        m_captureManualExposure = -1;
+        const QStringList parts = line.split(' ', Qt::SkipEmptyParts);
+        for (const QString& p : parts) {
+            if (p.startsWith("row_time_ns="))
+                m_captureRowTimeNs = p.mid(12).toInt();
+            else if (p.startsWith("row_time_ok="))
+                m_captureRowTimeOk = p.mid(12).toInt();
+            else if (p.startsWith("manual_exposure="))
+                m_captureManualExposure = p.mid(16).toInt();
+        }
+        m_captureMetaValid = true;
         return;
     }
 
@@ -504,16 +610,6 @@ void ArduCamController::setExposureUs(quint32 exposureUs) {
     p.reserve(1 + 4);
     p.append(char(0xF1));
     appendU32LE(p, exposureUs);
-    m_serial.write(p);
-    m_serial.flush();
-}
-
-void ArduCamController::setLineTimeUs(quint16 lineTimeUs) {
-    if (!m_serial.isOpen()) return;
-    QByteArray p;
-    p.reserve(1 + 2);
-    p.append(char(0xF2));
-    appendU16LE(p, lineTimeUs);
     m_serial.write(p);
     m_serial.flush();
 }
