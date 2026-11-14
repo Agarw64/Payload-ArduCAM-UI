@@ -6,17 +6,33 @@ The ArduCAM library's `memorysaver.h` must have `#define OV5642_MINI_5MP_PLUS` e
 
 ## Running the app
 
-Extract **`release-raw.zip`** and run `release-raw\appCamera-UI.exe` from the extracted folder. It includes all the Qt DLLs; no Qt install is needed.
+**Windows:** get the latest repo (`git pull`, or **Code → Download ZIP** on GitHub) and run **`release-raw\appCamera-UI.exe`**. It includes all the Qt DLLs; no Qt install is needed. The Arduino must run the firmware from the same version (see RAW capture).
 
-`release-debug.zip` is the older JPEG-only build. Don't run the `.exe` in the `release-debug/` folder directly: its DLLs were never committed (`*.dll` is gitignored), so it fails with "Qt6Gui.dll was not found".
+`release-raw/` is built automatically: every push that changes `Camera-UI/` runs [`.github/workflows/windows-release.yml`](.github/workflows/windows-release.yml) on a GitHub Windows machine (Qt 6.5.3 MinGW 64-bit + `windeployqt`), which commits the new build to `release-raw/` on the same branch a few minutes later. Pull after that commit appears. To rebuild without a code change, use **Actions → Build Windows app → Run workflow**. Nobody needs Windows or Qt installed to update it.
 
-To rebuild: Qt 6.5.3 MinGW 64-bit with Qt Serial Port. Build `Camera-UI/CMakeLists.txt` in Release, then run `windeployqt --qmldir Camera-UI appCamera-UI.exe` (without `--release`, which fails with "Unable to find the platform plugin" on MinGW builds).
+`release-debug.zip` is the older JPEG-only build. Don't run the `.exe` in the `release-debug/` folder directly: its DLLs were never committed, so it fails with "Qt6Gui.dll was not found".
+
+To build by hand on Windows: Qt 6.5.3 MinGW 64-bit with Qt Serial Port. Build `Camera-UI/CMakeLists.txt` in Release, then run `windeployqt --qmldir Camera-UI appCamera-UI.exe` (without `--release`, which fails with "Unable to find the platform plugin" on MinGW builds).
+
+### macOS
+
+The `.exe` is Windows-only; build a native Mac app from the same source instead:
+
+```sh
+brew install qt cmake
+cmake -S Camera-UI -B Camera-UI/build-mac -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH="$(brew --prefix qt)"
+cmake --build Camera-UI/build-mac -j 8
+open Camera-UI/build-mac/appCamera-UI.app
+```
+
+The serial port shows up as `cu.usbmodem...`. Opened from Finder, the app saves to `~/Documents/ArduCAM-UI/temp` (a Finder launch has no writable working folder).
 
 ## RAW capture
 
 1. Connect at 1000000 baud, then click **RAW Init**. The sensor starts at 640x480.
 2. Pick a size (640x480, 1280x960, 1920x1080, 2592x1944) and click **Capture RAW**.
    The firmware and app must come from the same version: RAW frames are sent in acknowledged blocks, and a mismatched pair stalls.
+   **Frames** sets how many frames one click takes (e.g. 20 darks at the same exposure). They are taken one after another, each saved as its own file, at roughly one frame per transfer time (about 3+ s at 640x480). **Stop** finishes the current frame and stops. If a frame fails all its resends, the batch stops and the log says how many were saved.
 3. Each frame is CRC-checked. A corrupted or stalled transfer is re-sent automatically (up to 3 times) without taking a new photo.
 4. Every RAW capture is saved to `./temp`:
    - `raw_<time>_<w>x<h>.raw`: the sensor bytes exactly as received. Row-major, 8 bits per pixel, Bayer mosaic, no header.

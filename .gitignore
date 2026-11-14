@@ -53,5 +53,7 @@ compile_commands.json
 
 *_qmlcache.qrc
 
-# Unzipped app build: Qt DLLs are ignored above, so only release-raw.zip is committed
-/release-raw/
+# The Windows app is committed as a folder (built by .github/workflows/windows-release.yml),
+# so its DLLs must not be ignored
+!/release-raw/
+!/release-raw/**

@@ -168,16 +168,35 @@ void ArduCamController::setRawSize(int idx0to3) {
     readRegister(0x5000);
 }
 
-void ArduCamController::captureRaw() {
+void ArduCamController::captureRaw(int count) {
     if (!m_serial.isOpen() || m_transferActive) return;
+    m_batchTotal = qMax(1, count);
+    m_batchDone = 0;
+    emit batchChanged();
+    if (m_batchTotal > 1)
+        emit logLine(QString("Capturing %1 RAW frames...").arg(m_batchTotal));
+    setTransferActive(true);
+    startRawCapture();
+}
+
+void ArduCamController::startRawCapture() {
     m_rawRetries = 0;
     m_captureMetaValid = false;   // the firmware sends a fresh snapshot with this capture
-    setTransferActive(true);
     sendByte(0x14);
+}
+
+void ArduCamController::stopRawBatch() {
+    if (m_batchTotal <= m_batchDone + 1) return;
+    m_batchTotal = m_batchDone + 1;   // the frame already in flight still completes and is saved
+    emit batchChanged();
+    emit logLine("Stopping after the current frame...");
 }
 
 void ArduCamController::resendRaw() {
     if (!m_serial.isOpen() || m_transferActive) return;
+    m_batchTotal = 0;
+    m_batchDone = 0;
+    emit batchChanged();
     m_rawRetries = 0;
     setTransferActive(true);
     sendByte(0x15);
@@ -312,7 +331,18 @@ void ArduCamController::notifyPreviewUpdated() {
 }
 
 void ArduCamController::setTransferActive(bool on) {
-    if (!on) m_rawStallTimer.stop();
+    if (!on) {
+        m_rawStallTimer.stop();
+        // Every way a capture ends (done, gave up, timeout, disconnect) comes through here
+        if (m_batchTotal > 1 && m_batchDone < m_batchTotal)
+            emit logLine(QString("WARNING: Multi-frame capture stopped early: %1 of %2 frames saved.")
+                             .arg(m_batchDone).arg(m_batchTotal));
+        if (m_batchTotal != 0 || m_batchDone != 0) {
+            m_batchTotal = 0;
+            m_batchDone = 0;
+            emit batchChanged();
+        }
+    }
     if (m_transferActive == on) return;
     m_transferActive = on;
     emit transferChanged();
@@ -514,15 +544,30 @@ void ArduCamController::finishRawFrame() {
         return;
     }
 
-    emit logLine(QString("RAW frame %1x%2 received in %3 s, CRC32 %4 OK")
+    const QString ofBatch = m_batchTotal > 1
+                                ? QString(" (frame %1 of %2)").arg(m_batchDone + 1).arg(m_batchTotal)
+                                : QString();
+    emit logLine(QString("RAW frame %1x%2 received in %3 s, CRC32 %4 OK%5")
                      .arg(m_rawWidth).arg(m_rawHeight)
                      .arg(m_rawElapsed.elapsed() / 1000.0, 0, 'f', 1)
-                     .arg(got, 8, 16, QChar('0')));
-    setTransferActive(false);
-    emit rawFrameReceived(pixels, m_rawWidth, m_rawHeight, got);
+                     .arg(got, 8, 16, QChar('0'))
+                     .arg(ofBatch));
+    emit rawFrameReceived(pixels, m_rawWidth, m_rawHeight, got);   // saves the frame
 
     m_frameCounter++;
     emit frameCounterChanged();
+
+    if (m_batchTotal > 0) {
+        m_batchDone++;
+        emit batchChanged();
+        if (m_batchDone < m_batchTotal) {
+            startRawCapture();   // next frame of the batch; transfer stays active
+            return;
+        }
+        if (m_batchTotal > 1)
+            emit logLine(QString("Multi-frame capture done: %1 frames saved.").arg(m_batchDone));
+    }
+    setTransferActive(false);
 }
 
 void ArduCamController::onRawStalled() {

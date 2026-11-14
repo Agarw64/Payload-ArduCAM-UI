@@ -163,7 +163,7 @@ ApplicationWindow {
                                 Layout.fillWidth: true
                                 enabled: ArduCam.connected && !ArduCam.streaming && !ArduCam.transferActive
                                 onClicked: {
-                                    if (ArduCam.rawMode) ArduCam.captureRaw()
+                                    if (ArduCam.rawMode) ArduCam.captureRaw(framesSpin.value)
                                     else ArduCam.captureSingle()
                                 }
                             }
@@ -181,6 +181,25 @@ ApplicationWindow {
                                 text: "Resend last"
                                 enabled: ArduCam.connected && !ArduCam.transferActive
                                 onClicked: ArduCam.resendRaw()
+                            }
+                        }
+
+                        RowLayout {
+                            Layout.fillWidth: true
+                            enabled: ArduCam.rawMode && !ArduCam.transferActive
+                            Label { text: "Frames:"; Layout.preferredWidth: 60 }
+                            SpinBox {
+                                id: framesSpin
+                                from: 1
+                                to: 500
+                                value: 1
+                                editable: true
+                                Layout.preferredWidth: 120
+                            }
+                            Label {
+                                visible: !ArduCam.rawMode
+                                text: "(RAW Init first)"
+                                opacity: 0.6
                             }
                         }
 
@@ -206,6 +225,22 @@ ApplicationWindow {
                                     value: ArduCam.transferProgress
                                 }
                                 Label { text: Math.round(ArduCam.transferProgress * 100) + "%" }
+                            }
+
+                            RowLayout {
+                                Layout.fillWidth: true
+                                visible: ArduCam.batchTotal > 1
+                                Label {
+                                    Layout.fillWidth: true
+                                    text: "Frame " + Math.min(ArduCam.batchDone + 1, ArduCam.batchTotal)
+                                          + " of " + ArduCam.batchTotal
+                                    font.bold: true
+                                }
+                                Button {
+                                    text: "Stop"
+                                    enabled: ArduCam.batchDone + 1 < ArduCam.batchTotal
+                                    onClicked: ArduCam.stopRawBatch()
+                                }
                             }
 
                             RowLayout {

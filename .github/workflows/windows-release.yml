@@ -1,0 +1,89 @@
+# Builds the Windows app and commits it to release-raw/, so testers only need to
+# get the latest repo and run release-raw/appCamera-UI.exe. Nobody needs Windows or Qt to build.
+name: Build Windows app
+
+on:
+  push:
+    paths:
+      - 'Camera-UI/**'
+      - '.github/workflows/windows-release.yml'
+  workflow_dispatch:   # "Run workflow" button on the Actions tab
+
+permissions:
+  contents: write      # to commit release-raw/ back to the branch
+
+concurrency:
+  group: build-windows-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # The runner's default Python can be newer than aqtinstall (used by install-qt-action) supports
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # Same Qt as the original release-raw.zip. Its MinGW 11.2 is no longer downloadable, so build with
+      # Qt's MinGW 13.1 (same posix/seh/msvcrt flavour, and its runtime is backward compatible)
+      - uses: jurplel/install-qt-action@v4
+        with:
+          version: '6.5.3'
+          host: 'windows'
+          target: 'desktop'
+          arch: 'win64_mingw'
+          modules: 'qtserialport'
+          tools: 'tools_mingw1310,qt.tools.win64_mingw1310'
+          cache: true
+
+      - name: Find MinGW
+        shell: pwsh
+        run: |
+          $gpp = Get-ChildItem "$env:IQTA_TOOLS" -Recurse -Filter g++.exe | Select-Object -First 1
+          if (!$gpp) { throw "MinGW g++ not found under $env:IQTA_TOOLS" }
+          "MINGW_BIN=$($gpp.DirectoryName)" | Out-File $env:GITHUB_ENV -Append
+          & $gpp.FullName --version
+
+      - name: Build
+        shell: pwsh
+        run: |
+          $mingw = $env:MINGW_BIN
+          # Qt's MinGW first, so the build and windeployqt use it rather than the runner's own GCC
+          $env:PATH = "$mingw;$env:QT_ROOT_DIR/bin;$env:PATH"
+          cmake -S Camera-UI -B build -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release `
+                -DCMAKE_C_COMPILER="$mingw/gcc.exe" -DCMAKE_CXX_COMPILER="$mingw/g++.exe"
+          cmake --build build -j 4
+
+      - name: Package into release-raw/
+        shell: pwsh
+        run: |
+          $env:PATH = "$env:MINGW_BIN;$env:QT_ROOT_DIR/bin;$env:PATH"
+          if (Test-Path release-raw) { Remove-Item release-raw -Recurse -Force }
+          New-Item -ItemType Directory release-raw | Out-Null
+          Copy-Item build/appCamera-UI.exe release-raw/
+          # No --release: it fails with "Unable to find the platform plugin" on MinGW builds
+          windeployqt --qmldir Camera-UI release-raw/appCamera-UI.exe
+          if (!(Test-Path release-raw/platforms/qwindows.dll)) { throw "windeployqt did not deploy the platform plugin" }
+          # Qt's bin has MinGW 11.2's runtime, which may be what windeployqt copied; the exe needs the
+          # newer runtime of the compiler that built it
+          foreach ($dll in "libgcc_s_seh-1.dll", "libstdc++-6.dll", "libwinpthread-1.dll") {
+            Copy-Item "$env:MINGW_BIN/$dll" release-raw/ -Force
+          }
+
+      - name: Commit release-raw/
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A -f release-raw
+          if git diff --cached --quiet; then
+            echo "release-raw/ unchanged"
+            exit 0
+          fi
+          git commit -m "Rebuild release-raw/ for ${GITHUB_SHA::7}"
+          # Someone may have pushed while this was building
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"

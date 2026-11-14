@@ -8,6 +8,7 @@
 #include <QFileInfo>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QStandardPaths>
 
 #include "arducamcontroller.h"
 #include "FrameProvider.h"
@@ -101,6 +102,16 @@ static QByteArray jpegWithComment(const QByteArray& jpeg, const QByteArray& text
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
+
+#ifdef Q_OS_MACOS
+    // A .app opened from Finder starts in "/", which is read-only, so ./temp could not be created.
+    // Save to ~/Documents/ArduCAM-UI/temp instead.
+    if (QDir::currentPath() == "/") {
+        const QString dir = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + "/ArduCAM-UI";
+        QDir().mkpath(dir);
+        QDir::setCurrent(dir);
+    }
+#endif
     QQmlApplicationEngine engine;
 
     ArduCamController controller;
