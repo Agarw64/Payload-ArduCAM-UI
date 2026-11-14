@@ -19,6 +19,9 @@ class ArduCamController : public QObject {
     Q_PROPERTY(bool rawMode READ rawMode NOTIFY rawModeChanged)
     Q_PROPERTY(bool transferActive READ transferActive NOTIFY transferChanged)
     Q_PROPERTY(double transferProgress READ transferProgress NOTIFY transferChanged)
+    // Multi-frame RAW capture: frames saved so far / frames requested (0 when no batch is running)
+    Q_PROPERTY(int batchDone READ batchDone NOTIFY batchChanged)
+    Q_PROPERTY(int batchTotal READ batchTotal NOTIFY batchChanged)
     Q_PROPERTY(int bayerPattern READ bayerPattern WRITE setBayerPattern NOTIFY bayerPatternChanged)
     Q_PROPERTY(int isp5000 READ isp5000 NOTIFY registersChanged)
 
@@ -33,6 +36,8 @@ public:
     bool rawMode() const { return m_rawMode; }
     bool transferActive() const { return m_transferActive; }
     double transferProgress() const;
+    int batchDone() const { return m_batchDone; }
+    int batchTotal() const { return m_batchTotal; }
     // Preview only: 0 = mosaic (gray), 1 = BGGR, 2 = GBRG, 3 = GRBG, 4 = RGGB
     int bayerPattern() const { return m_bayerPattern; }
     void setBayerPattern(int p);
@@ -59,7 +64,9 @@ public:
 
     Q_INVOKABLE void rawInit();                 // 0x12
     Q_INVOKABLE void setRawSize(int idx0to3);   // 0x13: 640x480, 1280x960, 1920x1080, 2592x1944
-    Q_INVOKABLE void captureRaw();              // 0x14
+    // 0x14, repeated: takes and saves `count` frames one after another at the current settings
+    Q_INVOKABLE void captureRaw(int count = 1);
+    Q_INVOKABLE void stopRawBatch();            // finish the frame in progress, then stop
     Q_INVOKABLE void resendRaw();               // 0x15
 
     Q_INVOKABLE void writeRegister(int addr, int value);  // 0x16
@@ -100,6 +107,7 @@ signals:
 
     void rawModeChanged();
     void transferChanged();
+    void batchChanged();
     void bayerPatternChanged();
     void registersChanged();
 
@@ -113,6 +121,7 @@ private:
     void handleTextLine(const QString& line);
     void finishRawFrame();
     void retryRaw(const QString& reason);
+    void startRawCapture();
     void setTransferActive(bool on);
     void setRawMode(bool on);
     void clearRegisters();
@@ -141,6 +150,8 @@ private:
     qint64 m_rawExpected = 0;    // pixel bytes + 4 CRC bytes
     qint64 m_rawAcked = 0;       // pixel bytes acknowledged to the firmware
     int m_rawRetries = 0;
+    int m_batchDone = 0;
+    int m_batchTotal = 0;
     QTimer m_rawStallTimer;
     QElapsedTimer m_rawElapsed;  // time since the frame header arrived
     QElapsedTimer m_rawProgressTick;
