@@ -21,7 +21,20 @@ To rebuild: Qt 6.5.3 MinGW 64-bit with Qt Serial Port. Build `Camera-UI/CMakeLis
 4. Every RAW capture is saved to `./temp`:
    - `raw_<time>_<w>x<h>.raw`: the sensor bytes exactly as received. Row-major, 8 bits per pixel, Bayer mosaic, no header.
    - `.png`: the same bytes as a lossless 8-bit grayscale image (the Bayer mosaic is visible).
-   - `.json`: width, height, CRC32, and the ISP registers read back before the capture.
+   - `.json`: width, height, CRC32, the ISP registers read back before the capture, and `sensor_capture` (see below).
+   - The `.png` also carries the metadata in its text chunks (`ArduCAM.Metadata` = the whole JSON, plus `ArduCAM.exposure_lines`, `ArduCAM.gain_register_value`, ...). Read them with `PIL.Image.open(f).text`. The `.raw` stays header-less by design; use the `.json` next to it.
+   - JPEG single shots saved to `./temp` get a `.json` too, and the same JSON is written into the JPEG as a COM segment.
+
+## Capture metadata
+
+Right after each capture the firmware reads a fixed list of sensor registers (exposure `0x3500-0x3502`, AEC/AGC mode `0x3503`, gain `0x3508-0x350B`, max exposure `0x350C/D`, HTS/VTS `0x380C-0x380F`, PLL `0x3010-0x3012`, mirror/flip `0x3818`, AEC targets and gain ceiling, ISP `0x5000`) and prints them as `ACK REG` lines followed by `ACK META row_time_ns=<n> row_time_ok=<0|1> manual_exposure=<0|1> END`. This is before the multi-second transfer, so in auto mode the values are the sensor's state for that frame rather than where the AEC drifted to afterwards (in auto mode the frame can still be 1-2 frames off, since the sensor latches exposure at frame boundaries). The host decodes them using the OV5642 datasheet (v1.11) formulas into `sensor_capture`:
+
+- `exposure_lines` = `{0x3500[3:0], 0x3501, 0x3502} / 16` (datasheet 4.6.2). This is the trustworthy exposure value.
+- `exposure_us` = `exposure_lines * row_time_ns / 1000`. The row time is the measured per-size value the firmware uses (87.5 µs for 640x480 and 1280x960, 133.33 µs for 1920x1080 and 2592x1944; `results/HANDOFF-row-time-lookup-table.md`). It is only valid while the sensor timing registers are unchanged: the firmware reports `row_time_ok` (checks `0x3010` and HTS) and the JSON carries it as `row_time_table_valid`. JPEG modes have no measured row time, so `exposure_us` is omitted there and the firmware refuses microsecond exposure commands outside RAW mode.
+- `gain_register_value` is the raw 9-bit value from `0x350A/0x350B`. The datasheet gives no multiplier formula, so none is computed.
+- `hts`, `vts`, `max_exposure_lines`, `aec_mode`/`agc_mode`/`vts_mode`, `mirror`, `vertical_flip`, and every register as `registers`.
+
+If the firmware is older and sends no snapshot, `capture_time_registers` is `false` and `registers` are just the last values read.
 
 The Bayer order at 640x480 is BGGR, confirmed on hardware with a solid red target (the bottom-right site of each 2x2 cell read 74 against about 32 for the other three). Other sizes have not been checked, and mirror/flip changes the order.
 

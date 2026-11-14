@@ -38,7 +38,7 @@ uint8_t read_fifo_burst(ArduCAM myCAM);
 
 #define CMD_SET_AUTO_EXPOSURE   0xF0
 #define CMD_SET_EXPOSURE_US     0xF1
-#define CMD_SET_LINETIME_US     0xF2
+// 0xF2 (set line time) was removed: the row time now comes from the per-size table
 
 // RAW (Bayer, 8 bits per pixel) capture.
 // Frame on the wire: "ACK RAW <w> <h> <len> END\r\n", then exactly <len> pixel
@@ -127,7 +127,17 @@ static const uint32_t CRC32_TABLE[256] PROGMEM = {
   0xB40BBE37UL, 0xC30C8EA1UL, 0x5A05DF1BUL, 0x2D02EF8DUL
 };
 
-static uint16_t g_lineTimeUs = 20;  // starting guess; you can calibrate via CMD_SET_LINETIME_US
+// Measured row time per RAW size (see results/HANDOFF-row-time-lookup-table.md). The sensor counts
+// exposure in 1/16 rows, so register = us * 16 / t_row. Stored as an exact fraction to avoid floats:
+//   t_row = 175/2 us = 87.5 us    -> register = us * 32 / 175   (sizes 640x480, 1280x960)
+//   t_row = 400/3 us = 133.33 us  -> register = us * 3 / 25     (sizes 1920x1080, 2592x1944)
+// The fractions are inferred from measured 87.499 / 133.329 us (HTS/32 MHz, HTS/24 MHz).
+static const uint16_t EXP_NUM[4]     = { 32, 32, 3, 3 };
+static const uint16_t EXP_DEN[4]     = { 175, 175, 25, 25 };
+// What the timing registers read back after init at each size; if they change, the row time above no longer holds
+static const uint8_t  SIG_PLL[4]     = { 0x20, 0x20, 0x30, 0x30 };   // 0x3010
+static const uint16_t SIG_HTS[4]     = { 2800, 2800, 3200, 3200 };   // 0x380C/D
+static const uint16_t DEFAULT_MAX_ROWS[4] = { 1000, 1000, 2000, 2000 }; // 0x350C/D after init
 static bool g_manualExposure = false;
 
 static bool readExact(uint8_t* dst, size_t n, unsigned long timeoutMs = 200) {
@@ -164,23 +174,54 @@ static void setAutoExposureOV5642(bool enable) {
   g_manualExposure = !enable;
 }
 
-static void setExposureUsOV5642(uint32_t exposureUs) {
-  // Force manual mode so exposure “sticks”
-  setAutoExposureOV5642(false);
+static uint8_t readSensorReg(uint16_t addr) {
+  uint8_t v = 0;
+  myCAM.rdSensorReg16_8(addr, &v);
+  return v;
+}
 
-  // Convert µs -> “exposure units”. Many OV sensors use 20-bit exposure in units of 1/16 line.
-  // exp20 = lines * 16
-  if (g_lineTimeUs == 0) g_lineTimeUs = 1;
-  uint32_t exp20 = (exposureUs * 16UL) / (uint32_t)g_lineTimeUs;
+// True while the timing registers still match what the row-time table was measured with
+static bool rowTimeTableValid() {
+  if (!g_rawMode) return false;   // JPEG sizes have no measured row time
+  uint16_t hts = ((uint16_t)(readSensorReg(0x380C) & 0x0F) << 8) | readSensorReg(0x380D);
+  return readSensorReg(0x3010) == SIG_PLL[g_rawSizeIdx] && hts == SIG_HTS[g_rawSizeIdx];
+}
 
-  // Clamp to 20-bit (0xFFFFF)
-  if (exp20 > 0xFFFFF) exp20 = 0xFFFFF;
+// Row time in nanoseconds: 16 * DEN / NUM us. 0 when there is no table for the current mode.
+static uint32_t rowTimeNs() {
+  if (!g_rawMode) return 0;
+  return (16000UL * EXP_DEN[g_rawSizeIdx] + EXP_NUM[g_rawSizeIdx] / 2) / EXP_NUM[g_rawSizeIdx];
+}
 
-  // Write to exposure registers (common packing)
-  // 0x3500: [19:16], 0x3501: [15:8], 0x3502: [7:0]
+// Returns false (and writes nothing) when there is no measured row time for the current mode.
+// sensorOk reports whether the timing-register signature matched.
+static bool setExposureUsOV5642(uint32_t exposureUs, uint32_t* rowsOut, bool* sensorOk) {
+  if (!g_rawMode) return false;
+  *sensorOk = rowTimeTableValid();
+
+  // register (rows * 16) = round(us * NUM / DEN); 32-bit safe up to ~100 s at NUM=32
+  const uint8_t i = g_rawSizeIdx;
+  if (exposureUs > 100000000UL) exposureUs = 100000000UL;
+  uint32_t exp20 = (exposureUs * (uint32_t)EXP_NUM[i] + EXP_DEN[i] / 2) / EXP_DEN[i];
+  if (exp20 < 1) exp20 = 1;
+  if (exp20 > 0xFFFFF) exp20 = 0xFFFFF;   // 20-bit register, about 65535 rows
+
+  // A manual exposure must stay below the maximum-exposure registers (0x350C/D, in rows; datasheet
+  // 4.6.2), which also sets the frame length. Raise it for long exposures, restore the
+  // default for short ones so the frame rate comes back.
+  uint32_t rows = (exp20 + 15) / 16;
+  uint32_t maxRows = rows + 2;
+  if (maxRows < DEFAULT_MAX_ROWS[i]) maxRows = DEFAULT_MAX_ROWS[i];
+  if (maxRows > 0xFFFF) maxRows = 0xFFFF;
+
+  setAutoExposureOV5642(false);   // all-manual, so the values stick
+  myCAM.wrSensorReg16_8(0x350C, (maxRows >> 8) & 0xFF);
+  myCAM.wrSensorReg16_8(0x350D, maxRows & 0xFF);
   myCAM.wrSensorReg16_8(0x3500, (exp20 >> 16) & 0x0F);
   myCAM.wrSensorReg16_8(0x3501, (exp20 >> 8) & 0xFF);
-  myCAM.wrSensorReg16_8(0x3502, (exp20) & 0xFF);
+  myCAM.wrSensorReg16_8(0x3502, exp20 & 0xFF);
+  *rowsOut = exp20;
+  return true;
 }
 
 static void printRegister(uint16_t addr) {
@@ -190,6 +231,38 @@ static void printRegister(uint16_t addr) {
   Serial.print(addr, HEX);
   Serial.print(' ');
   Serial.print(val, HEX);
+  Serial.println(F(" END"));
+}
+
+// Registers that describe how a frame was exposed (OV5642 datasheet v1.11 tables 4-4, 7-1,
+// 7-5, 7-6 and section 4.6). printCaptureMeta() reports them right after a capture finishes,
+// so the host stores what the sensor held when the frame was taken, not what it holds
+// after the multi-second transfer (in auto mode the AEC keeps moving).
+static const uint16_t META_REGS[] PROGMEM = {
+  0x3500, 0x3501, 0x3502,   // exposure [19:0], units of line/16
+  0x3503,                   // [2] VTS manual, [1] AGC manual, [0] AEC manual
+  0x3508, 0x3509,           // long-channel gain output (bit0 = high bit)
+  0x350A, 0x350B,           // gain output to sensor (bit0 = high bit); manual gain is written here
+  0x350C, 0x350D,           // AEC VTS: maximum exposure, in lines
+  0x380C, 0x380D,           // HTS (total horizontal size)
+  0x380E, 0x380F,           // VTS (total vertical size)
+  0x3010, 0x3011, 0x3012,   // PLL controls
+  0x3818,                   // [6] mirror, [5] vertical flip (changes the Bayer order)
+  0x3A0F, 0x3A10,           // AEC target thresholds (EV presets write these)
+  0x3A18, 0x3A19,           // AEC gain ceiling
+  0x5000                    // ISP control 00
+};
+
+static void printCaptureMeta() {
+  for (uint8_t i = 0; i < sizeof(META_REGS) / sizeof(META_REGS[0]); i++)
+    printRegister(pgm_read_word(&META_REGS[i]));
+  // Last line of the block: the host snapshots the registers when it sees this
+  Serial.print(F("ACK META row_time_ns="));
+  Serial.print(rowTimeNs());
+  Serial.print(F(" row_time_ok="));
+  Serial.print(rowTimeTableValid() ? 1 : 0);
+  Serial.print(F(" manual_exposure="));
+  Serial.print(g_manualExposure ? 1 : 0);
   Serial.println(F(" END"));
 }
 
@@ -279,6 +352,8 @@ static void captureRaw() {
       return;
     }
   }
+
+  printCaptureMeta();   // before the long transfer: the sensor state for this frame
 
   g_rawFrameW = RAW_W[g_rawSizeIdx];
   g_rawFrameH = RAW_H[g_rawSizeIdx];
@@ -567,23 +642,18 @@ static bool handleSensorCommand(uint8_t cmd) {
       uint32_t us = readU32LE(&ok);
       if (!ok) { Serial.println(F("ACK CMD EXP timeout END")); break; }
 
-      setExposureUsOV5642(us);
+      uint32_t reg = 0;
+      bool sensorOk = false;
+      if (!setExposureUsOV5642(us, &reg, &sensorOk)) {
+        Serial.println(F("ACK CMD EXP_US needs RAW mode (no measured row time for JPEG) END"));
+        break;
+      }
 
       Serial.print(F("ACK CMD EXP_US "));
       Serial.print(us);
-      Serial.println(F(" END"));
-      break;
-    }
-    case CMD_SET_LINETIME_US: {
-      bool ok = false;
-      uint16_t lt = readU16LE(&ok);
-      if (!ok) { Serial.println(F("ACK CMD LT timeout END")); break; }
-
-      if (lt < 1) lt = 1;
-      g_lineTimeUs = lt;
-
-      Serial.print(F("ACK CMD LINETIME_US "));
-      Serial.print(g_lineTimeUs);
+      Serial.print(F(" reg="));
+      Serial.print(reg);
+      if (!sensorOk) Serial.print(F(" WARNING timing registers changed, row time not valid"));
       Serial.println(F(" END"));
       break;
     }
@@ -809,6 +879,7 @@ if (mode == 1)
   }
   if (myCAM.get_bit(ARDUCHIP_TRIG, CAP_DONE_MASK))
   {
+    printCaptureMeta();
     Serial.println(F("ACK CMD CAM Capture Done. END"));delay(50);
     read_fifo_burst(myCAM);
     //Clear the capture done flag
